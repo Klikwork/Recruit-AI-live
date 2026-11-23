@@ -37,9 +37,9 @@ const events: EventItem[] = [
     ],
     bring: 'A laptop on which you can and may install Claude, plus a Claude Code subscription (20 dollar per month, cancel after one month).',
     pricing: [
-      'Early bird until December 31: 649 euro (no team discount)',
-      'From January 1: 799 euro',
-      'Team discount: 2 people 749 euro, 3 people 729 euro, 4 or more 699 euro per ticket',
+      'Early bird until December 31: 647 euro (no team discount)',
+      'From January 1: 797 euro',
+      'Team discount: 2 people 747 euro, 3 people 727 euro, 4 or more 697 euro per ticket',
     ],
     ctaLabel: 'Ask about registration',
     ctaHref: 'mailto:hello@klikwork.com?subject=HR%20Hackathon%202%20February%202027',
