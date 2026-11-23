@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { NOTIFY_HREF } from './Announcement';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,13 +15,9 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
+    { name: 'Wat je kunt verwachten', href: '/#verwachten' },
+    { name: 'Voor wie', href: '/#voor-wie' },
     { name: 'Agenda', href: '/agenda' },
-    { name: 'What to expect', href: '/#expect' },
-    { name: 'Who should attend', href: '/#who' },
-    { name: 'Speakers', href: '/#speakers' },
-    { name: 'Program', href: '/#programme' },
-    { name: 'Practical Info', href: '/#practical' },
-    { name: 'FAQ', href: '/#faq' },
   ];
 
   return (
@@ -50,11 +47,12 @@ const Navbar: React.FC = () => {
                 {link.name}
               </a>
             ))}
-            <span
-              className="px-6 py-2.5 rounded-full text-sm font-bold text-slate-400 bg-white/5 border border-white/10 select-none cursor-not-allowed"
+            <a
+              href={NOTIFY_HREF}
+              className="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-brand-600 hover:bg-brand-500 transition-colors"
             >
-              Registration Closed
-            </span>
+              Houd me op de hoogte
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -83,11 +81,12 @@ const Navbar: React.FC = () => {
                 {link.name}
               </a>
             ))}
-             <span
-              className="block mt-4 text-center px-3 py-3 text-base font-bold bg-white/5 border border-white/10 text-slate-400 rounded-lg select-none cursor-not-allowed"
+            <a
+              href={NOTIFY_HREF}
+              className="block mt-4 text-center px-3 py-3 text-base font-bold bg-brand-600 text-white rounded-lg"
             >
-              Registration Closed
-            </span>
+              Houd me op de hoogte
+            </a>
           </div>
         </div>
       )}

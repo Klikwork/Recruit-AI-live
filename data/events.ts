@@ -18,42 +18,60 @@ export interface EventItem {
 // Single source of truth for the agenda page and the homepage announcement.
 export const events: EventItem[] = [
   {
+    id: 'recruit-ai-live-2027',
+    // Exact date not set yet; this value only orders it in the agenda. Update when confirmed.
+    date: '2027-03-01',
+    dateLabel: 'Voorjaar 2027, datum volgt binnenkort',
+    title: 'Recruit AI Live 2027',
+    location: 'Locatie volgt binnenkort',
+    audience: 'Eigenaren, directeuren en senior recruiters van recruitmentbureaus. Voertaal: Nederlands',
+    summary:
+      'De hands-on AI-conferentie voor recruitmentbureaus is terug, deze keer in het Nederlands. Mensen uit de praktijk, echte toepassingen, geen verkooppraatjes.',
+    highlights: [
+      'Praktijkverhalen over AI in sourcing, automatisering en kandidaatcontact',
+      'Werkwijzen die je de dag erna kunt toepassen',
+      'Onafhankelijk en zonder sponsors',
+    ],
+    ctaLabel: 'Houd me op de hoogte',
+    ctaHref: 'mailto:hello@klikwork.com?subject=Houd%20me%20op%20de%20hoogte%20van%20Recruit%20AI%20Live%202027',
+  },
+  {
     id: 'hr-hackathon-2027',
     date: '2027-02-02',
-    dateLabel: 'Tuesday, February 2, 2027',
-    time: '10:00 – 16:00, lunch included',
-    title: 'HR Hackathon: build your own apps with vibe coding',
+    dateLabel: 'Dinsdag 2 februari 2027',
+    time: '10:00 tot 16:00, inclusief lunch',
+    title: 'HR Hackathon: bouw je eigen apps met vibe coding',
     hosts: 'Marcel van der Meer & Bas van de Haterd',
     location: 'Utrecht Centraal Station',
-    audience: 'HR and recruitment professionals',
+    audience: 'HR- en recruitmentprofessionals',
     summary:
-      'In one day you learn to turn good ideas into working products yourself, together with other HR and recruitment professionals.',
+      'Samen met andere HR- en recruitmentprofessionals leer je in één dag hoe je goede ideeën omzet in werkende producten.',
     highlights: [
-      'Turn Excel files into a smart application',
-      'Build a dashboard that tells your story clearly',
-      'Automate the monthly data collection for your reports',
-      'Prototype against a practice ATS with sample CVs and vacancies',
+      'Excel-documenten omzetten in een slimme applicatie',
+      'Een dashboard maken om iets goed te communiceren',
+      'Het maandelijkse verzamelen van data voor je rapport automatiseren',
+      "Een werkend prototype bouwen tegen een 'fake ATS' met fake cv's en vacatures",
     ],
     bring:
-      'A laptop on which you can and may install Claude, plus a Claude Code subscription (20 dollar per month, cancel after one month).',
+      'Een laptop waarop je Claude kunt en mag installeren, en een Claude Code-abonnement van 20 dollar per maand (na één maand meteen op te zeggen).',
     pricing: [
-      'Early bird until December 31: 647 euro excl. VAT (no team discount)',
-      'From January 1: 797 euro excl. VAT',
-      'Team discount: 2 people 747 euro, 3 people 727 euro, 4 or more 697 euro per ticket, excl. VAT',
+      'Early bird tot en met 31 december: 647 euro excl. btw (geen teamkorting)',
+      'Vanaf 1 januari: 797 euro excl. btw',
+      'Teamkorting: met 2 personen 747 euro, met 3 personen 727 euro, met 4 of meer 697 euro per ticket, excl. btw',
     ],
-    ctaLabel: 'Register now',
+    ctaLabel: 'Schrijf je in',
     ctaHref: 'https://go.klikwork.com/checkout/hr-hackathon-2-february-2027',
   },
   {
     id: 'recruit-ai-live-2026',
     date: '2026-06-02',
-    dateLabel: 'Tuesday, June 2, 2026',
-    time: '12:00 – 16:45',
+    dateLabel: 'Dinsdag 2 juni 2026',
+    time: '12:00 tot 16:45',
     title: 'Recruit AI Live 2026',
     location: 'Van der Valk Hotel Breukelen',
-    audience: 'Recruitment agency owners, directors and senior recruiters',
+    audience: 'Eigenaren, directeuren en senior recruiters van recruitmentbureaus. Voertaal: Engels',
     summary:
-      'The hands-on AI conference for recruitment agencies. Four practitioners, real-world insights, no vendor pitches.',
+      'Vier sprekers uit de praktijk over AI in recruitment, zonder verkooppraatjes.',
     highlights: [
       'AI: Evolution or Revolution? (Bas van de Haterd)',
       'Stop buying AI tools (Leandro Gomes da Silva)',

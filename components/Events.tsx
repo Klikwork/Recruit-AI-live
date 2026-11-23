@@ -49,7 +49,7 @@ const Events: React.FC<EventsProps> = ({ id, heading, items, past = false }) => 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 <div className="lg:col-span-2">
                   {past && (
-                    <p className="inline-block mb-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-slate-300 bg-white/5 border border-white/10">Concluded</p>
+                    <p className="inline-block mb-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-slate-300 bg-white/5 border border-white/10">Afgelopen</p>
                   )}
                   {event.hosts && (
                     <p className="text-sm font-semibold uppercase tracking-wider text-brand-400 mb-3">{event.hosts}</p>
@@ -67,7 +67,7 @@ const Events: React.FC<EventsProps> = ({ id, heading, items, past = false }) => 
                   {event.bring && (
                     <p className="flex items-start text-slate-400">
                       <Laptop className="w-5 h-5 mr-3 mt-0.5 text-brand-400 shrink-0" />
-                      <span><span className="font-semibold text-slate-300">What to bring: </span>{event.bring}</span>
+                      <span><span className="font-semibold text-slate-300">Wat je nodig hebt: </span>{event.bring}</span>
                     </p>
                   )}
                 </div>
