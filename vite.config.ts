@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
           input: {
             main: path.resolve(__dirname, 'index.html'),
             agenda: path.resolve(__dirname, 'agenda.html'),
+            hackathon: path.resolve(__dirname, 'hr-hackathon.html'),
           },
         },
       },

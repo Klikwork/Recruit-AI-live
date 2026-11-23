@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Hackathon, 2 februari 2027 | Recruit AI Live</title>
+    <meta name="description" content="Bouw in één dag je eigen HR-applicatie met vibe coding. Voor HR- en corporate recruitmentprofessionals. Dinsdag 2 februari 2027, Utrecht." />
+    <link rel="icon" type="image/png" href="https://media-01.imu.nl/storage/klikwork.com/32015/ral-favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Roboto', 'Helvetica', 'system-ui', 'Arial', 'sans-serif'] },
+            colors: {
+              ink: '#0b0e14',
+              card: '#11151d',
+              accent: '#38bdf8',
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      body { background-color: #0b0e14; color: #e5e7eb; }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-sky-400 selection:text-ink">
+    <div id="root"></div>
+    <script type="module" src="/hr-hackathon.tsx"></script>
+  </body>
+</html>
