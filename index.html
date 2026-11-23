@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recruit AI Live – June 2, 2026</title>
+    <meta name="description" content="Recruit AI Live – June 2, 2026. The AI conference for recruitment agency owners and directors. Five expert speakers, practical insights, no vendor pitches." />
+    <link rel="icon" type="image/png" href="https://media-01.imu.nl/storage/klikwork.com/32015/ral-favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+                950: '#082f49',
+              }
+            },
+            animation: {
+              'glow': 'glow 3s ease-in-out infinite alternate',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              glow: {
+                '0%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.1)' },
+                '100%': { boxShadow: '0 0 30px rgba(14, 165, 233, 0.3), 0 0 10px rgba(14, 165, 233, 0.2)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #020617; /* Slate 950 */
+        color: #e2e8f0;
+      }
+      .ambient-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+        background: radial-gradient(circle at 15% 50%, rgba(14, 165, 233, 0.08), transparent 45%),
+                    radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.08), transparent 45%);
+      }
+      
+      /* High-Fidelity Glassmorphism */
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      }
+      
+      .glass-card {
+        /* Multi-layered gradient for depth */
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+        
+        /* Heavy blur for the "thick glass" look */
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
+        
+        /* Refined border treatment */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        
+        /* Lighting and Bevel simulation */
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.3),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+          
+        transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .glass-card:hover {
+        /* Glow up interaction */
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-6px) scale(1.01);
+        
+        box-shadow: 
+          0 20px 50px -10px rgba(0, 0, 0, 0.5),
+          0 0 25px rgba(56, 189, 248, 0.15), /* Ambient glow */
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+      }
+      
+      .text-glow {
+        text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="text-slate-200 antialiased selection:bg-brand-500 selection:text-white">
+    <div class="ambient-glow"></div>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
