@@ -14,6 +14,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
+    { name: 'Events', href: '#events' },
     { name: 'What to expect', href: '#expect' },
     { name: 'Who should attend', href: '#who' },
     { name: 'Speakers', href: '#speakers' },

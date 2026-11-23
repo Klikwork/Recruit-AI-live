@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Events from './components/Events';
 import Features from './components/Features';
 import Audience from './components/Audience';
 import Speakers from './components/Speakers';
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <Events />
         <Features />
         <Audience />
         <Speakers />
