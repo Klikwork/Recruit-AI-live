@@ -11,7 +11,7 @@ const Footer: React.FC = () => (
       <div className="flex flex-col gap-2 md:items-end">
         <a href="/agenda" className="hover:text-white">Agenda</a>
         <a href="mailto:hello@klikwork.com" className="hover:text-white">hello@klikwork.com</a>
-        <span className="text-slate-500">© {new Date().getFullYear()} Klikwork BV</span>
+        <span className="text-slate-400">© {new Date().getFullYear()} Klikwork BV</span>
       </div>
     </Container>
   </footer>

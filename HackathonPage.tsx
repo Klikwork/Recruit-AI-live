@@ -2,7 +2,9 @@ import React from 'react';
 import { Calendar, Clock, MapPin, Ticket, Laptop, CreditCard } from 'lucide-react';
 import Page from './components/Page';
 import { Button, Container, Fact, H2, Lead, Section, Todo } from './components/ui';
-import { HACKATHON_CHECKOUT } from './data/events';
+import { HACKATHON_CHECKOUT, hackathonPrice } from './data/events';
+
+const price = hackathonPrice();
 
 const recognise = [
   'Je hebt Excel-bestanden die eigenlijk een slimme applicatie zouden moeten zijn.',
@@ -75,6 +77,7 @@ const toc = [
   ['om-vier-uur', 'Om vier uur'],
   ['programma', 'Programma'],
   ['begeleiders', 'Begeleiders'],
+  ['meenemen', 'Wat je nodig hebt'],
   ['prijzen', 'Prijzen'],
   ['vragen', 'Vragen'],
 ];
@@ -84,9 +87,24 @@ const InfoCard: React.FC = () => (
     <Fact icon={<Calendar size={18} />} label="Datum">Dinsdag 2 februari 2027</Fact>
     <Fact icon={<Clock size={18} />} label="Tijd">10:00 tot 16:00, met lunch</Fact>
     <Fact icon={<MapPin size={18} />} label="Locatie">Utrecht Centraal</Fact>
-    <Fact icon={<Ticket size={18} />} label="Early bird, t/m 31 december">647 euro excl. btw</Fact>
+    <Fact icon={<Ticket size={18} />} label={price.label}>{price.amount} euro excl. btw</Fact>
+    <Fact icon={<Laptop size={18} />} label="Meenemen">Laptop waarop je Claude mag installeren</Fact>
     <Button href={HACKATHON_CHECKOUT} full>Schrijf je in</Button>
-    <p className="text-sm text-slate-400">Vanaf 1 januari 797 euro, met teamkorting vanaf 2 personen.</p>
+    <BuyNote />
+  </div>
+);
+
+// What happens after the click. Facts still to be supplied stay visible as Todo markers.
+const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
+  <div className="text-sm text-slate-400 space-y-1">
+    {showNext && <p>
+      {price.earlyBird
+        ? 'Vanaf 1 januari 797 euro, met teamkorting vanaf 2 personen.'
+        : 'Teamkorting vanaf 2 personen.'}
+    </p>}
+    <p>
+      Je rekent af op de betaalpagina van Klikwork. <Todo>WAT JE NA BETALING ONTVANGT EN ANNULERINGSVOORWAARDEN</Todo>
+    </p>
   </div>
 );
 
@@ -122,15 +140,15 @@ const HackathonPage: React.FC = () => (
     {/* Section nav for orientation */}
     <nav aria-label="Op deze pagina" className="border-t border-white/10 sticky top-16 z-30 bg-slate-950/90 backdrop-blur-md">
       <Container className="flex items-center justify-between gap-6">
-        <ul className="flex gap-6 overflow-x-auto py-3 text-sm text-slate-400 whitespace-nowrap">
+        <ul className="flex gap-6 overflow-x-auto text-sm text-slate-400 whitespace-nowrap [mask-image:linear-gradient(to_right,black_85%,transparent)] lg:[mask-image:none] pr-8 lg:pr-0">
           {toc.map(([id, label]) => (
             <li key={id}>
-              <a href={`#${id}`} className="hover:text-white">{label}</a>
+              <a href={`#${id}`} className="block py-3.5 hover:text-white">{label}</a>
             </li>
           ))}
         </ul>
         <a href={HACKATHON_CHECKOUT} className="hidden lg:inline-flex px-4 py-1.5 rounded-full text-sm font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 whitespace-nowrap">
-          Schrijf je in, 647 euro
+          Schrijf je in, {price.amount} euro
         </a>
       </Container>
     </nav>
@@ -205,7 +223,7 @@ const HackathonPage: React.FC = () => (
                 <h3 className="text-lg font-bold text-white">{h.name}</h3>
                 <p className="text-sm text-slate-400 mb-3">{h.role}</p>
                 <p className="text-slate-300 leading-relaxed mb-2">{h.bio}</p>
-                <a href={h.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-400 hover:text-sky-300">
+                <a href={h.linkedin} target="_blank" rel="noopener noreferrer" className="inline-block py-2 text-sm text-sky-400 hover:text-sky-300">
                   LinkedIn
                 </a>
               </div>
@@ -235,30 +253,39 @@ const HackathonPage: React.FC = () => (
       <Container>
         <H2>Prijzen</H2>
         <p className="text-slate-400 mb-8">Alle prijzen per persoon, exclusief btw. Lunch is inbegrepen.</p>
-        <div className="grid md:grid-cols-3 gap-4 max-w-4xl">
-          <div className="rounded-2xl border border-sky-400/60 bg-sky-400/5 p-6">
-            <p className="text-sm text-sky-300 font-medium mb-2">Early bird, tot en met 31 december</p>
-            <p className="text-3xl font-black text-white mb-2">647 euro</p>
-            <p className="text-sm text-slate-400">Geen teamkorting op de early bird.</p>
+        <div className="grid md:grid-cols-[1.2fr_1fr] gap-4 max-w-4xl">
+          <div className="rounded-2xl border border-sky-400/60 bg-sky-400/5 p-6 md:p-8">
+            <p className="text-sm text-sky-300 font-medium mb-2">{price.earlyBird ? 'Early bird, tot en met 31 december' : 'Per persoon'}</p>
+            <p className="text-5xl font-black text-white mb-3">{price.amount} euro</p>
+            <p className="text-sm text-slate-400 mb-6">
+              {price.earlyBird ? 'Geen teamkorting op de early bird.' : 'Of kies voor teamkorting, zie hiernaast.'}
+            </p>
+            <Button href={HACKATHON_CHECKOUT} full>Schrijf je in</Button>
           </div>
-          <div className="rounded-2xl border border-white/10 p-6">
-            <p className="text-sm text-slate-400 font-medium mb-2">Vanaf 1 januari</p>
-            <p className="text-3xl font-black text-white mb-2">797 euro</p>
-          </div>
-          <div className="rounded-2xl border border-white/10 p-6">
-            <p className="text-sm text-slate-400 font-medium mb-2">Teamkorting, vanaf 1 januari</p>
-            <ul className="text-white space-y-1">
-              <li>2 personen: 747 euro p.p.</li>
-              <li>3 personen: 727 euro p.p.</li>
-              <li>4 of meer: 697 euro p.p.</li>
-            </ul>
+          <div className="rounded-2xl border border-white/10 p-6 md:p-8">
+            <p className="text-sm text-slate-400 font-medium mb-4">{price.earlyBird ? 'Vanaf 1 januari' : 'Teamkorting'}</p>
+            <dl className="divide-y divide-white/10 text-white">
+              {[
+                ...(price.earlyBird ? [['1 persoon', '797 euro']] : []),
+                ['2 personen', '747 euro p.p.'],
+                ['3 personen', '727 euro p.p.'],
+                ['4 of meer', '697 euro p.p.'],
+              ].map(([k, v]) => (
+                <div key={k} className="flex justify-between gap-4 py-2.5">
+                  <dt className="text-slate-300">{k}</dt>
+                  <dd className="font-semibold tabular-nums">{v}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
-        <p className="mt-8 text-slate-300 max-w-[65ch]">
-          Nog opleidingsbudget over dit jaar? Met de early bird boek je de training voor februari nu.
-        </p>
-        <div className="mt-8">
-          <Button href={HACKATHON_CHECKOUT}>Schrijf je in</Button>
+        {price.earlyBird && (
+          <p className="mt-8 text-slate-300 max-w-[65ch]">
+            Nog opleidingsbudget over dit jaar? Met de early bird boek je de training voor februari nu.
+          </p>
+        )}
+        <div className="mt-6 max-w-[65ch]">
+          <BuyNote showNext={false} />
         </div>
       </Container>
     </Section>
@@ -270,9 +297,9 @@ const HackathonPage: React.FC = () => (
         <div className="divide-y divide-white/10 border-y border-white/10 max-w-3xl">
           {faq.map((f) => (
             <details key={f.q} className="group py-5">
-              <summary className="cursor-pointer list-none flex justify-between gap-4 text-white font-medium">
+              <summary className="cursor-pointer list-none flex items-center justify-between gap-4 py-1 text-white font-medium">
                 {f.q}
-                <span className="text-slate-500 group-open:rotate-45 transition-transform" aria-hidden>+</span>
+                <span className="inline-block text-slate-400 text-xl leading-none group-open:rotate-45 transition-transform" aria-hidden>+</span>
               </summary>
               <div className="mt-3 text-slate-300 leading-relaxed">{f.a}</div>
             </details>
@@ -290,7 +317,7 @@ const HackathonPage: React.FC = () => (
       <div className="px-4 py-3 flex items-center justify-between gap-4">
         <div className="text-sm">
           <p className="text-white font-semibold">2 feb 2027, Utrecht</p>
-          <p className="text-slate-400">Early bird 647 euro excl. btw</p>
+          <p className="text-slate-400">{price.earlyBird ? 'Early bird ' : ''}{price.amount} euro excl. btw</p>
         </div>
         <a href={HACKATHON_CHECKOUT} className="px-5 py-2.5 rounded-full font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 whitespace-nowrap">
           Schrijf je in

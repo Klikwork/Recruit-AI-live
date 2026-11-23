@@ -26,7 +26,7 @@ export const Button: React.FC<{ href: string; children: React.ReactNode; variant
     href={href}
     className={`${full ? 'flex w-full' : 'inline-flex'} items-center justify-center px-7 py-3.5 rounded-full font-bold transition-colors ${
       variant === 'primary'
-        ? 'text-slate-950 bg-sky-400 hover:bg-sky-300 shadow-[0_8px_24px_-8px_rgba(56,189,248,0.6)]'
+        ? 'text-slate-950 bg-sky-400 hover:bg-sky-300 shadow-[0_6px_16px_-6px_rgba(0,0,0,0.6)]'
         : 'text-white border border-white/20 hover:border-white/50 hover:bg-white/5'
     }`}
   >

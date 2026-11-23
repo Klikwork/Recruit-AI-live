@@ -11,7 +11,20 @@ export interface EventItem {
   href?: string; // landing page
 }
 
+function today() {
+  return new Date().toISOString().slice(0, 10);
+}
+
 export const HACKATHON_CHECKOUT = 'https://go.klikwork.com/checkout/hr-hackathon-2-february-2027';
+// Early bird runs through 31 December 2026; from 1 January the regular price applies.
+export const EARLY_BIRD_UNTIL = '2026-12-31';
+export const HACKATHON_DATE = '2027-02-02';
+export const hackathonPrice = () => {
+  const earlyBird = today() <= EARLY_BIRD_UNTIL;
+  return { earlyBird, amount: earlyBird ? 647 : 797, label: earlyBird ? 'Early bird, t/m 31 december' : 'Per persoon' };
+};
+export const isUpcoming = (date: string) => date >= today();
+
 export const NOTIFY_2027 =
   'mailto:hello@klikwork.com?subject=Houd%20me%20op%20de%20hoogte%20van%20Recruit%20AI%20Live%202027';
 
@@ -48,7 +61,6 @@ export const events: EventItem[] = [
   },
 ];
 
-const today = () => new Date().toISOString().slice(0, 10);
 export const upcomingEvents = () =>
   events.filter((e) => e.date >= today()).sort((a, b) => a.date.localeCompare(b.date));
 export const pastEvents = () =>

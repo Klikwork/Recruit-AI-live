@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, MapPin, MessageSquare, ArrowRight } from 'lucide-react';
 import Page from './components/Page';
 import { Button, Container, Fact, H2, Lead, Section } from './components/ui';
-import { NOTIFY_2027 } from './data/events';
+import { HACKATHON_DATE, NOTIFY_2027, isUpcoming } from './data/events';
 
 const sessions2026 = [
   ['AI: Evolution or Revolution?', 'Bas van de Haterd'],
@@ -57,6 +57,7 @@ const App: React.FC = () => (
       </Container>
     </Section>
 
+    {isUpcoming(HACKATHON_DATE) && (
     <Section className="pb-24">
       <Container>
         <H2>Ook op de agenda</H2>
@@ -77,6 +78,7 @@ const App: React.FC = () => (
         </a>
       </Container>
     </Section>
+    )}
   </Page>
 );
 

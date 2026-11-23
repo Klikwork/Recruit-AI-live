@@ -39,11 +39,11 @@ const AgendaPage: React.FC = () => {
     <Page>
       <Container className="pt-16 md:pt-24 pb-4">
         <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">Agenda</h1>
-        <p className="text-lg text-slate-300 max-w-[65ch]">Alle events van Recruit AI Live op een rij. Klik door naar een event voor het programma en de inschrijving.</p>
+        <p className="text-lg text-slate-300 max-w-[65ch]">Alle events van Recruit AI Live op een rij. Klik door naar een event voor meer informatie en, zodra dat kan, de inschrijving.</p>
       </Container>
       {upcoming.length > 0 && (
         <Container className="pt-8 md:pt-12 pb-12" >
-          <h2 className="text-sm font-medium text-slate-400 mb-2">Binnenkort</h2>
+          <h2 className="text-2xl font-bold text-white tracking-tight pb-2 border-b border-white/20">Binnenkort</h2>
           {upcoming.map((e) => (
             <Row key={e.id} event={e} />
           ))}
@@ -51,7 +51,7 @@ const AgendaPage: React.FC = () => {
       )}
       {past.length > 0 && (
         <Container className="pb-20">
-          <h2 className="text-sm font-medium text-slate-400 mb-2">Eerdere edities</h2>
+          <h2 className="text-2xl font-bold text-slate-300 tracking-tight pb-2 border-b border-white/20">Eerdere edities</h2>
           {past.map((e) => (
             <Row key={e.id} event={e} past />
           ))}
