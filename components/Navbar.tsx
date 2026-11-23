@@ -14,13 +14,13 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Events', href: '#events' },
-    { name: 'What to expect', href: '#expect' },
-    { name: 'Who should attend', href: '#who' },
-    { name: 'Speakers', href: '#speakers' },
-    { name: 'Program', href: '#programme' },
-    { name: 'Practical Info', href: '#practical' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'Agenda', href: '/agenda' },
+    { name: 'What to expect', href: '/#expect' },
+    { name: 'Who should attend', href: '/#who' },
+    { name: 'Speakers', href: '/#speakers' },
+    { name: 'Program', href: '/#programme' },
+    { name: 'Practical Info', href: '/#practical' },
+    { name: 'FAQ', href: '/#faq' },
   ];
 
   return (
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <a href="#" className="text-2xl font-bold tracking-tighter text-white group">
+            <a href="/" className="text-2xl font-bold tracking-tighter text-white group">
               Recruit AI <span className="text-brand-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.8)] transition-all group-hover:text-brand-300">Live</span>
             </a>
           </div>
