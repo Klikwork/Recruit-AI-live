@@ -137,6 +137,23 @@ const HackathonPage: React.FC = () => (
       </div>
     </Container>
 
+    {/* Atmosphere photo from an earlier session */}
+    <Container className="pb-14 md:pb-20">
+      <figure>
+        <img
+          src="/images/sfeer/bouwdag-zaal.webp"
+          srcSet="/images/sfeer/bouwdag-zaal-800.webp 800w, /images/sfeer/bouwdag-zaal.webp 1600w"
+          sizes="(min-width: 1152px) 1104px, 100vw"
+          width={1600}
+          height={900}
+          alt="Een zaal met deelnemers aan tafels, elk achter een laptop, die samen aan hun eigen toepassing werken."
+          className="w-full aspect-[16/7] object-cover rounded-2xl border border-white/10"
+          fetchPriority="high"
+        />
+        <figcaption className="mt-3 text-sm text-slate-400">Sfeerbeeld van een eerdere Klikwork-sessie.</figcaption>
+      </figure>
+    </Container>
+
     {/* Section nav for orientation */}
     <nav aria-label="Op deze pagina" className="border-t border-white/10 sticky top-16 z-30 bg-slate-950/90 backdrop-blur-md">
       <Container className="flex items-center justify-between gap-6">
@@ -169,6 +186,34 @@ const HackathonPage: React.FC = () => (
           Dan kun je het ook zelf bouwen. Samen met andere HR- en recruitmentprofessionals leer je in één dag hoe je een
           goed idee omzet in iets dat werkt.
         </Lead>
+      </Container>
+    </Section>
+
+    {/* Atmosphere gallery */}
+    <Section id="sfeer">
+      <Container>
+        <H2>Zo ziet een bouwdag eruit</H2>
+        <Lead className="mb-10">Laptops open, ieder aan een eigen idee, en hulp aan tafel als je vastloopt.</Lead>
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            ['bouwdag-tafel', 'Deelnemers aan een lange tafel werken op hun laptop, één van hen typt geconcentreerd.'],
+            ['bouwdag-laptops', 'Een tafel met deelnemers die achter hun laptops zitten en meekijken op elkaars scherm.'],
+            ['bouwdag-overleg', 'Iemand buigt zich over een tafel om mee te kijken, met uitzicht op de stad.'],
+          ].map(([name, alt]) => (
+            <img
+              key={name}
+              src={`/images/sfeer/${name}-800.webp`}
+              srcSet={`/images/sfeer/${name}-800.webp 800w, /images/sfeer/${name}.webp 1600w`}
+              sizes="(min-width: 768px) 33vw, 100vw"
+              width={800}
+              height={450}
+              alt={alt}
+              loading="lazy"
+              className="w-full aspect-[4/3] object-cover rounded-xl border border-white/10"
+            />
+          ))}
+        </div>
+        <p className="mt-3 text-sm text-slate-400">Sfeerbeelden van eerdere Klikwork-sessies.</p>
       </Container>
     </Section>
 
