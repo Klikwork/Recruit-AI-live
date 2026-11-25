@@ -7,29 +7,28 @@
     <meta name="description" content="Bouw in één dag je eigen HR-applicatie met vibe coding. Voor HR- en corporate recruitmentprofessionals. Dinsdag 2 februari 2027, Utrecht." />
     <link rel="icon" type="image/png" href="https://media-01.imu.nl/storage/klikwork.com/32015/ral-favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+            },
             colors: {
-              ink: '#020617',
+              ink: '#05070d',
             },
           },
         },
       }
     </script>
     <style>
-      body { background-color: #020617; color: #e2e8f0; }
-      body::before {
-        content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-        background: radial-gradient(circle at 15% 20%, rgba(14,165,233,0.10), transparent 45%),
-                    radial-gradient(circle at 85% 60%, rgba(99,102,241,0.08), transparent 45%);
-      }
-      ::selection { background: #38bdf8; color: #020617; }
+      body { background-color: #05070d; color: #e2e8f0; }
+      h1, h2, h3 { font-family: 'Bricolage Grotesque', Inter, system-ui, sans-serif; letter-spacing: -0.02em; }
+      ::selection { background: #38bdf8; color: #05070d; }
       :focus-visible { outline: 2px solid #38bdf8; outline-offset: 3px; border-radius: 6px; }
-      html { scrollbar-color: #334155 #020617; }
+      html { scrollbar-color: #334155 #05070d; }
       a { text-underline-offset: 3px; }
       p, li, h1, h2, h3 { text-wrap: pretty; }
       h1, h2 { text-wrap: balance; }

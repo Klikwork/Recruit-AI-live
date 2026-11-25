@@ -11,9 +11,9 @@ const current = () =>
   typeof window === 'undefined' ? '' : window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 
 const Navbar: React.FC = () => (
-  <header className="sticky top-0 z-50 bg-slate-950/85 backdrop-blur-md border-b border-white/10">
+  <header className="sticky top-0 z-50 bg-ink/85 backdrop-blur-md border-b border-white/10">
     <Container className="flex items-center justify-between h-16">
-      <a href="/" className="text-lg font-bold text-white tracking-tight">
+      <a href="/" className="font-display text-lg font-extrabold text-white tracking-tight">
         Recruit AI <span className="text-sky-400">Live</span>
       </a>
       <nav className="flex items-center gap-5 sm:gap-8 text-sm">

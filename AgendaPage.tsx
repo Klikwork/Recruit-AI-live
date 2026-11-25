@@ -5,10 +5,10 @@ import { upcomingEvents, pastEvents, EventItem } from './data/events';
 
 const Row: React.FC<{ event: EventItem; past?: boolean }> = ({ event, past }) => {
   const body = (
-    <div className="grid md:grid-cols-[12rem_1fr_auto] gap-2 md:gap-8 py-8 border-b border-white/10">
-      <p className={`text-sm ${past ? 'text-slate-400' : 'text-slate-300'}`}>{event.dateLabel}</p>
+    <div className="grid md:grid-cols-[14rem_1fr_auto] gap-2 md:gap-8 py-8 border-b border-white/10">
+      <p className={`font-display text-lg font-bold leading-snug ${past ? 'text-slate-400' : 'text-sky-300'}`}>{event.dateLabel}</p>
       <div>
-        <h3 className={`text-xl font-bold mb-2 ${past ? 'text-slate-300' : 'text-white group-hover:text-sky-300'}`}>
+        <h3 className={`text-2xl md:text-3xl font-extrabold mb-2 ${past ? 'text-slate-300' : 'text-white group-hover:text-sky-300'}`}>
           {event.title}
         </h3>
         <p className="text-slate-400 leading-relaxed mb-2">{event.teaser}</p>
@@ -38,7 +38,7 @@ const AgendaPage: React.FC = () => {
   return (
     <Page>
       <Container className="pt-16 md:pt-24 pb-4">
-        <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">Agenda</h1>
+        <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-[-0.04em] leading-[0.95] mb-6">Agenda</h1>
         <p className="text-lg text-slate-300 max-w-[65ch]">Alle events van Recruit AI Live op een rij. Klik door naar een event voor meer informatie en, zodra dat kan, de inschrijving.</p>
       </Container>
       {upcoming.length > 0 && (

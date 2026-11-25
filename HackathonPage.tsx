@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, Clock, MapPin, Ticket, Laptop, CreditCard } from 'lucide-react';
 import Page from './components/Page';
-import { Button, Container, Fact, H2, Lead, Section, Todo } from './components/ui';
+import { Button, Container, DateStrip, Fact, H2, Lead, Section, Todo } from './components/ui';
 import { HACKATHON_CHECKOUT, hackathonPrice } from './data/events';
 
 const price = hackathonPrice();
@@ -43,14 +43,14 @@ const hosts = [
   {
     name: 'Marcel van der Meer',
     role: 'Oprichter van Klikwork Talent Imagineers',
-    image: 'https://media-01.imu.nl/storage/klikwork.com/32015/marcel-van-der-meer-portret-1105-hr.jpg',
+    image: '/images/hosts/marcel-van-der-meer.webp',
     linkedin: 'https://www.linkedin.com/in/marcel-vd-meer/',
     bio: 'Marcel heeft duizenden recruiters getraind in AI en automatisering en wereldwijd meer dan 500 bedrijven ondersteund. Hij helpt teams uitzoeken waar tijd weglekt en wat ze als eerste moeten oplossen.',
   },
   {
     name: 'Bas van de Haterd',
     role: 'Expert in recruitmenttechnologie, organisator van Digitaal-Werven',
-    image: 'https://media-01.imu.nl/storage/klikwork.com/32015/bas-vd-haterd.jpeg',
+    image: '/images/hosts/bas-van-de-haterd.webp',
     linkedin: 'https://www.linkedin.com/in/basvandehaterd/',
     bio: 'Bas is expert in recruitmenttechnologie en assessments. Hij helpt organisaties AI inzetten voor eerlijkere en efficiëntere selectie, en sprak daarover van Sydney tot Bogotá.',
   },
@@ -82,18 +82,6 @@ const toc = [
   ['vragen', 'Vragen'],
 ];
 
-const InfoCard: React.FC = () => (
-  <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 space-y-5">
-    <Fact icon={<Calendar size={18} />} label="Datum">Dinsdag 2 februari 2027</Fact>
-    <Fact icon={<Clock size={18} />} label="Tijd">10:00 tot 16:00, met lunch</Fact>
-    <Fact icon={<MapPin size={18} />} label="Locatie">Utrecht Centraal</Fact>
-    <Fact icon={<Ticket size={18} />} label={price.label}>{price.amount} euro excl. btw</Fact>
-    <Fact icon={<Laptop size={18} />} label="Meenemen">Laptop waarop je Claude mag installeren</Fact>
-    <Button href={HACKATHON_CHECKOUT} full>Schrijf je in</Button>
-    <BuyNote />
-  </div>
-);
-
 // What happens after the click. Facts still to be supplied stay visible as Todo markers.
 const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
   <div className="text-sm text-slate-400 space-y-1">
@@ -108,32 +96,64 @@ const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
   </div>
 );
 
+// Two hosts, overlapping: the studio portrait large, the stage photo in front.
+const HostCollage: React.FC = () => (
+  <figure>
+    <div className="relative h-[300px] sm:h-[440px] lg:h-[500px]">
+      <img
+        src={hosts[0].image}
+        alt={hosts[0].name}
+        className="absolute right-0 top-0 w-[72%] h-[76%] object-cover rounded-2xl bg-slate-800"
+      />
+      <img
+        src={hosts[1].image}
+        alt={hosts[1].name}
+        className="absolute left-0 bottom-0 w-[52%] h-[50%] object-cover rounded-2xl ring-8 ring-ink bg-slate-800"
+      />
+    </div>
+    <figcaption className="mt-3 text-sm text-slate-400 text-right">
+      Met {hosts[0].name} en {hosts[1].name}
+    </figcaption>
+  </figure>
+);
+
 const HackathonPage: React.FC = () => (
   <Page>
     {/* Hero */}
-    <Container className="pt-16 md:pt-24 pb-14 md:pb-20">
-      <div className="grid lg:grid-cols-[1fr_22rem] gap-12 items-start">
+    <Container className="pt-12 md:pt-20 pb-12 md:pb-16">
+      <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-14 items-center">
         <div>
-          <p className="text-slate-400 mb-4">HR Hackathon met Marcel van der Meer en Bas van de Haterd</p>
-          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-6 text-balance">
+          <DateStrip date="di 2 feb 2027" rest="Utrecht Centraal, 10:00 tot 16:00" />
+          <h1 className="mt-7 text-5xl md:text-7xl lg:text-[5.25rem] font-extrabold text-white tracking-[-0.035em] leading-[0.95] text-balance">
             Bouw in één dag je eigen HR-applicatie
           </h1>
-          <Lead>
+          <Lead className="mt-7">
             Je komt binnen met een idee, een Excel-bestand of een rapport waar je elke maand uren in steekt. Je gaat naar
             huis met een werkende eerste versie die je morgen aan je collega's en je IT-afdeling kunt laten zien.
           </Lead>
-          <p className="mt-6 text-slate-400 max-w-[65ch]">
+          <p className="mt-5 text-slate-400 max-w-[60ch]">
             Voor HR-professionals en corporate recruiters. Je bouwt met vibe coding: je beschrijft wat je wilt en de AI
             schrijft de code.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4 lg:hidden">
-            <Button href={HACKATHON_CHECKOUT}>Schrijf je in</Button>
-            <Button href="#programma" variant="secondary">Bekijk het programma</Button>
+          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <Button href={HACKATHON_CHECKOUT}>Schrijf je in, {price.amount} euro</Button>
+            <span className="text-sm text-slate-400">
+              {price.earlyBird ? 'Early bird t/m 31 december, ' : 'Per persoon, '}excl. btw
+            </span>
           </div>
         </div>
-        <aside className="hidden lg:block">
-          <InfoCard />
-        </aside>
+        <HostCollage />
+      </div>
+    </Container>
+
+    {/* Fact bar: everything you need to decide, in one row */}
+    <Container className="pb-12 md:pb-16">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-6 border-y border-white/10 py-6">
+        <Fact icon={<Calendar size={18} />} label="Datum">Dinsdag 2 februari 2027</Fact>
+        <Fact icon={<Clock size={18} />} label="Tijd">10:00 tot 16:00, met lunch</Fact>
+        <Fact icon={<MapPin size={18} />} label="Locatie">Utrecht Centraal</Fact>
+        <Fact icon={<Ticket size={18} />} label={price.earlyBird ? 'Early bird' : 'Prijs'}>{price.amount} euro excl. btw</Fact>
+        <Fact icon={<Laptop size={18} />} label="Meenemen">Laptop waarop je Claude mag installeren</Fact>
       </div>
     </Container>
 
@@ -155,7 +175,7 @@ const HackathonPage: React.FC = () => (
     </Container>
 
     {/* Section nav for orientation */}
-    <nav aria-label="Op deze pagina" className="border-t border-white/10 sticky top-16 z-30 bg-slate-950/90 backdrop-blur-md">
+    <nav aria-label="Op deze pagina" className="border-t border-white/10 sticky top-16 z-30 bg-ink/90 backdrop-blur-md">
       <Container className="flex items-center justify-between gap-6">
         <ul className="flex gap-6 overflow-x-auto text-sm text-slate-400 whitespace-nowrap [mask-image:linear-gradient(to_right,black_85%,transparent)] lg:[mask-image:none] pr-8 lg:pr-0">
           {toc.map(([id, label]) => (
@@ -301,7 +321,7 @@ const HackathonPage: React.FC = () => (
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-4 max-w-4xl">
           <div className="rounded-2xl border border-sky-400/60 bg-sky-400/5 p-6 md:p-8">
             <p className="text-sm text-sky-300 font-medium mb-2">{price.earlyBird ? 'Early bird, tot en met 31 december' : 'Per persoon'}</p>
-            <p className="text-5xl font-black text-white mb-3">{price.amount} euro</p>
+            <p className="font-display text-5xl font-extrabold tracking-[-0.03em] text-white mb-3">{price.amount} euro</p>
             <p className="text-sm text-slate-400 mb-6">
               {price.earlyBird ? 'Geen teamkorting op de early bird.' : 'Of kies voor teamkorting, zie hiernaast.'}
             </p>
@@ -358,7 +378,7 @@ const HackathonPage: React.FC = () => (
     </Section>
 
     {/* Mobile sticky CTA */}
-    <div className="lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-slate-950/95 backdrop-blur-md">
+    <div className="lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-ink/95 backdrop-blur-md">
       <div className="px-4 py-3 flex items-center justify-between gap-4">
         <div className="text-sm">
           <p className="text-white font-semibold">2 feb 2027, Utrecht</p>

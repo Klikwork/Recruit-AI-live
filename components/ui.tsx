@@ -9,7 +9,7 @@ export const Section: React.FC<{ id?: string; children: React.ReactNode; classNa
 );
 
 export const H2: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-6 text-balance">{children}</h2>
+  <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-[-0.03em] leading-[1.05] mb-6 text-balance">{children}</h2>
 );
 
 export const Lead: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
@@ -47,4 +47,12 @@ export const Fact: React.FC<{ icon: React.ReactNode; label: string; children: Re
 // Visible marker for information that still has to come from Marcel.
 export const Todo: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <span className="px-1.5 py-0.5 rounded bg-amber-300/15 text-amber-200 font-mono text-[0.85em]">[{children}]</span>
+);
+
+// Date strip: the one fixed anchor at the top of every event. Filled segment for the date, outlined for the rest.
+export const DateStrip: React.FC<{ date: React.ReactNode; rest: React.ReactNode }> = ({ date, rest }) => (
+  <p className="inline-flex flex-wrap items-stretch rounded-lg overflow-hidden border border-sky-400/40 text-sm">
+    <span className="bg-sky-400 text-slate-950 font-semibold px-3 py-1.5">{date}</span>
+    <span className="px-3 py-1.5 text-sky-100">{rest}</span>
+  </p>
 );
