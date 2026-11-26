@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, Clock, MapPin, Ticket, Laptop, Download, Hourglass } from 'lucide-react';
 import Page from './components/Page';
-import { Button, Container, DateStrip, Fact, H2, Lead, Section, Todo } from './components/ui';
+import { Button, Container, DateStrip, Fact, H2, Lead, Section } from './components/ui';
 import {
   HACKATHON_CHECKOUT,
   MANAGER_LETTER,
@@ -92,7 +92,11 @@ const programme: { time?: string; title: string; body: React.ReactNode }[] = [
     title: 'Bouwen',
     body: "Je bouwt je eigen applicatie. Wil je oefenen met recruitmentdata, dan gebruik je onze oefen-ATS met fictieve cv's en vacatures.",
   },
-  { time: '16:00', title: 'Afsluiting', body: <Todo>JOUW ECHTE INVULLING VAN DE AFSLUITING HIER</Todo> },
+    {
+    time: '16:00',
+    title: 'Afsluiting',
+    body: 'Een aantal deelnemers presenteert hun oplossing. We sluiten af met hoe je je prototype werkend krijgt binnen je IT-afdeling, en je krijgt een certificaat.',
+  },
 ];
 
 const hosts = [
@@ -121,7 +125,10 @@ const faq: { q: string; a: React.ReactNode }[] = [
     q: 'Kan ik op factuur betalen?',
     a: 'Ja. Bij je inschrijving kies je of je direct betaalt of een factuur ontvangt. Handig als je werkgever betaalt.',
   },
-  { q: 'Hoe schrijf ik een team in met korting?', a: <Todo>JOUW ECHTE INSTRUCTIE VOOR TEAMINSCHRIJVINGEN HIER</Todo> },
+  {
+    q: 'Hoe schrijf ik een team in met korting?',
+    a: 'Kies bij je inschrijving het aantal personen. De korting wordt automatisch verrekend. Daarna krijg je een mail waarin je de gegevens van je collega\'s invult, en zij krijgen elk een eigen vragenlijst.',
+  },
   {
     q: 'Wat ontvang ik na mijn inschrijving?',
     a: 'Je krijgt een bewijs van inschrijving en de factuur. Ongeveer twee weken voor de hackathon sturen we je een korte vragenlijst, zodat we weten welke use case je wilt bouwen.',
