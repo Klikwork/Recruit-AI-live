@@ -137,7 +137,7 @@ const faq: { q: string; a: React.ReactNode }[] = [
     ),
   },
   { q: 'Werk ik met echte kandidaatgegevens?', a: "Dat hoeft niet. Je kunt bouwen tegen onze oefen-ATS met fictieve cv's en vacatures." },
-  { q: 'Hoeveel deelnemers zijn er?', a: <Todo>JOUW ECHTE MAXIMUM AANTAL HIER</Todo> },
+  { q: 'Hoeveel deelnemers zijn er?', a: 'Maximaal 20. Zo is er genoeg tijd om iedereen aan tafel te helpen.' },
   { q: 'Waar is het precies?', a: <>Bij Utrecht Centraal Station. <Todo>EXACTE ZAAL EN ADRES HIER</Todo></> },
 ];
 
@@ -208,7 +208,7 @@ const HackathonPage: React.FC = () => (
     <Container className="pt-12 md:pt-20 pb-12 md:pb-16">
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-14 items-center">
         <div>
-          <DateStrip date="di 2 feb 2027" rest="Utrecht Centraal, 10:00 tot 16:00" />
+          <DateStrip date="di 2 feb 2027" rest="Utrecht Centraal, 10:00 tot 16:00, max 20 plekken" />
           <h1 className="mt-7 text-5xl md:text-7xl lg:text-[5.25rem] font-extrabold text-white tracking-[-0.035em] leading-[0.95] text-balance">
             Bouw in één dag je eigen HR-applicatie
           </h1>
@@ -223,7 +223,7 @@ const HackathonPage: React.FC = () => (
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Button href={HACKATHON_CHECKOUT}>Reserveer je plek</Button>
             <span className="text-sm text-slate-400">
-              {price.amount} euro excl. btw{price.earlyBird ? `, early bird ${daysLabel}` : ''}. Direct betalen of op factuur.
+              {price.amount} euro excl. btw{price.earlyBird ? `, early bird ${daysLabel}` : ''}. Maximaal 20 plekken. Direct betalen of op factuur.
             </span>
           </div>
         </div>
@@ -393,7 +393,7 @@ const HackathonPage: React.FC = () => (
               {price.earlyBird && <s className="ml-3 text-2xl font-bold text-slate-400 tracking-normal">{REGULAR_PRICE}</s>}
             </p>
             <p className="text-sm text-slate-400 mb-6">
-              {price.earlyBird ? 'Geen teamkorting op de early bird.' : 'Of kies voor teamkorting, zie hiernaast.'}
+              {price.earlyBird ? 'Maximaal 20 plekken. Geen teamkorting op de early bird.' : 'Maximaal 20 plekken. Of kies voor teamkorting, zie hiernaast.'}
             </p>
             <Button href={HACKATHON_CHECKOUT} full>Reserveer je plek</Button>
           </div>
