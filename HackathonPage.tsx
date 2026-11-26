@@ -172,8 +172,8 @@ const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
 // The early bird deadline, said once: date, days left, what it saves.
 const EarlyBirdBar: React.FC = () =>
   price.earlyBird ? (
-    <div className="flex items-start gap-3 border-l-2 border-amber-300 pl-4 py-1">
-      <Hourglass size={18} className="text-amber-300 mt-1 shrink-0" aria-hidden />
+    <div className="flex items-start gap-3 max-w-[70ch]">
+      <Hourglass size={18} className="text-sky-400 mt-1 shrink-0" aria-hidden />
       <p className="text-slate-300 leading-relaxed">
         <span className="text-white font-semibold">Early bird tot en met 31 december, {daysLabel}.</span> Daarna{' '}
         {REGULAR_PRICE} euro, dus je bespaart {saving} euro per persoon. Moet je manager akkoord geven? Vraag het budget
