@@ -120,6 +120,10 @@ const faq: { q: string; a: React.ReactNode }[] = [
   },
   { q: 'Hoe schrijf ik een team in met korting?', a: <Todo>JOUW ECHTE INSTRUCTIE VOOR TEAMINSCHRIJVINGEN HIER</Todo> },
   {
+    q: 'Wat ontvang ik na mijn inschrijving?',
+    a: 'Na betaling krijg je de factuur en een bewijs van inschrijving. Ongeveer twee weken voor de hackathon sturen we je een korte vragenlijst, zodat we weten welke use case je wilt bouwen.',
+  },
+  {
     q: 'Wat moet ik meenemen?',
     a: 'Een laptop waarop je Claude mag installeren (check dat vooraf bij je IT-afdeling) en minimaal een Claude Pro-abonnement. Dat kost 20 dollar per maand en je kunt het na één maand weer opzeggen.',
   },
@@ -156,7 +160,7 @@ const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
         : 'Teamkorting vanaf 2 personen.'}
     </p>}
     <p>
-      Je rekent af op de betaalpagina van Klikwork. <Todo>WAT JE NA BETALING ONTVANGT</Todo> Op je inschrijving zijn de{' '}
+      Je rekent af op de betaalpagina van Klikwork. Je krijgt meteen de factuur en een bewijs van inschrijving. Op je inschrijving zijn de{' '}
       <a href={TERMS_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
         algemene voorwaarden van Klikwork
       </a>{' '}
