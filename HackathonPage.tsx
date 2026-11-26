@@ -116,12 +116,12 @@ const faq: { q: string; a: React.ReactNode }[] = [
   { q: 'Moet ik kunnen programmeren?', a: <Todo>JOUW ECHTE ANTWOORD HIER</Todo> },
   {
     q: 'Kan ik op factuur betalen?',
-    a: <>Inschrijven gaat via de betaalpagina. <Todo>JOUW ECHTE ANTWOORD OVER BETALEN OP FACTUUR HIER</Todo></>,
+    a: 'Ja. Bij je inschrijving kies je of je direct betaalt of een factuur ontvangt. Handig als je werkgever betaalt.',
   },
   { q: 'Hoe schrijf ik een team in met korting?', a: <Todo>JOUW ECHTE INSTRUCTIE VOOR TEAMINSCHRIJVINGEN HIER</Todo> },
   {
     q: 'Wat ontvang ik na mijn inschrijving?',
-    a: 'Na betaling krijg je de factuur en een bewijs van inschrijving. Ongeveer twee weken voor de hackathon sturen we je een korte vragenlijst, zodat we weten welke use case je wilt bouwen.',
+    a: 'Je krijgt een bewijs van inschrijving en de factuur. Ongeveer twee weken voor de hackathon sturen we je een korte vragenlijst, zodat we weten welke use case je wilt bouwen.',
   },
   {
     q: 'Wat moet ik meenemen?',
@@ -160,7 +160,7 @@ const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
         : 'Teamkorting vanaf 2 personen.'}
     </p>}
     <p>
-      Je rekent af op de betaalpagina van Klikwork. Na betaling krijg je de factuur en een bewijs van inschrijving. Op je inschrijving zijn de{' '}
+      Je kiest zelf of je direct betaalt of op factuur. Na je inschrijving krijg je een bewijs van inschrijving en de factuur. Op je inschrijving zijn de{' '}
       <a href={TERMS_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
         algemene voorwaarden van Klikwork
       </a>{' '}
@@ -175,9 +175,8 @@ const EarlyBirdBar: React.FC = () =>
     <div className="flex items-start gap-3 max-w-[70ch]">
       <Hourglass size={18} className="text-sky-400 mt-1 shrink-0" aria-hidden />
       <p className="text-slate-300 leading-relaxed">
-        <span className="text-white font-semibold">Early bird tot en met 31 december, {daysLabel}.</span> Daarna{' '}
-        {REGULAR_PRICE} euro, dus je bespaart {saving} euro per persoon. Moet je manager akkoord geven? Vraag het budget
-        nu aan met <a href="#voor-je-manager" className="text-sky-400 hover:text-sky-300 underline underline-offset-2">de brief</a>.
+        <span className="text-white font-semibold">Early bird tot en met 31 december, {daysLabel}.</span> Vanaf 1 januari
+        betaal je {saving} euro meer per persoon. Moet je manager akkoord geven? Vraag het budget nu aan met <a href="#voor-je-manager" className="text-sky-400 hover:text-sky-300 underline underline-offset-2">de brief</a>.
       </p>
     </div>
   ) : null;
@@ -218,13 +217,13 @@ const HackathonPage: React.FC = () => (
             huis met een werkende eerste versie die je morgen aan je team en je IT-afdeling kunt laten zien.
           </Lead>
           <p className="mt-5 text-slate-400 max-w-[60ch]">
-            Voor HR-professionals en corporate recruiters. Je bouwt met vibe coding: je beschrijft wat je wilt en de AI
-            schrijft de code.
+            Voor HR-professionals en corporate recruiters. Programmeren hoeft niet: je beschrijft in gewone taal wat je wilt
+            en de AI schrijft de code.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Button href={HACKATHON_CHECKOUT}>Schrijf je in, {price.amount} euro</Button>
+            <Button href={HACKATHON_CHECKOUT}>Reserveer je plek</Button>
             <span className="text-sm text-slate-400">
-              {price.earlyBird ? `Early bird t/m 31 december, ${daysLabel}. Excl. btw.` : 'Per persoon, excl. btw.'}
+              {price.amount} euro excl. btw{price.earlyBird ? `, early bird ${daysLabel}` : ''}. Direct betalen of op factuur.
             </span>
           </div>
         </div>
@@ -271,7 +270,7 @@ const HackathonPage: React.FC = () => (
           ))}
         </ul>
         <a href={HACKATHON_CHECKOUT} className="hidden lg:inline-flex px-4 py-1.5 rounded-full text-sm font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 whitespace-nowrap">
-          Schrijf je in, {price.amount} euro
+          Reserveer je plek
         </a>
       </Container>
     </nav>
@@ -389,11 +388,14 @@ const HackathonPage: React.FC = () => (
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-4 max-w-4xl">
           <div className="rounded-2xl border border-sky-400/60 bg-sky-400/5 p-6 md:p-8">
             <p className="text-sm text-sky-300 font-medium mb-2">{price.earlyBird ? 'Early bird, tot en met 31 december' : 'Per persoon'}</p>
-            <p className="font-display text-5xl font-extrabold tracking-[-0.03em] text-white mb-3">{price.amount} euro</p>
+            <p className="font-display text-5xl font-extrabold tracking-[-0.03em] text-white mb-3">
+              {price.amount} euro
+              {price.earlyBird && <s className="ml-3 text-2xl font-bold text-slate-400 tracking-normal">{REGULAR_PRICE}</s>}
+            </p>
             <p className="text-sm text-slate-400 mb-6">
               {price.earlyBird ? 'Geen teamkorting op de early bird.' : 'Of kies voor teamkorting, zie hiernaast.'}
             </p>
-            <Button href={HACKATHON_CHECKOUT} full>Schrijf je in</Button>
+            <Button href={HACKATHON_CHECKOUT} full>Reserveer je plek</Button>
           </div>
           <div className="rounded-2xl border border-white/10 p-6 md:p-8">
             <p className="text-sm text-slate-400 font-medium mb-4">{price.earlyBird ? 'Vanaf 1 januari' : 'Teamkorting'}</p>
@@ -484,7 +486,7 @@ const HackathonPage: React.FC = () => (
           <p className="text-slate-400">{price.earlyBird ? 'Early bird ' : ''}{price.amount} euro excl. btw</p>
         </div>
         <a href={HACKATHON_CHECKOUT} className="px-5 py-2.5 rounded-full font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 whitespace-nowrap">
-          Schrijf je in
+          Reserveer je plek
         </a>
       </div>
     </div>
