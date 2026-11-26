@@ -160,7 +160,7 @@ const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
         : 'Teamkorting vanaf 2 personen.'}
     </p>}
     <p>
-      Je rekent af op de betaalpagina van Klikwork. Je krijgt meteen de factuur en een bewijs van inschrijving. Op je inschrijving zijn de{' '}
+      Je rekent af op de betaalpagina van Klikwork. Na betaling krijg je de factuur en een bewijs van inschrijving. Op je inschrijving zijn de{' '}
       <a href={TERMS_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
         algemene voorwaarden van Klikwork
       </a>{' '}
