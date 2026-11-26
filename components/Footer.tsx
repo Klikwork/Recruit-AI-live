@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './ui';
 
-const Footer: React.FC<{ initiative?: string }> = ({ initiative = 'Klikwork' }) => (
+const Footer: React.FC<{ initiative?: string }> = ({ initiative = 'Klikwork en Digitaal-Werven' }) => (
   <footer className="border-t border-white/10 py-12 text-sm text-slate-400">
     <Container className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
       <div className="max-w-md">

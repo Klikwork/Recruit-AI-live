@@ -224,7 +224,7 @@ const HostCollage: React.FC = () => (
 );
 
 const HackathonPage: React.FC = () => (
-  <Page initiative="Klikwork en Digitaal-Werven">
+  <Page>
     {/* Hero */}
     <Container className="pt-12 md:pt-20 pb-12 md:pb-16">
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-14 items-center">
