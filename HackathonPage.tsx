@@ -1,38 +1,94 @@
 import React from 'react';
-import { Calendar, Clock, MapPin, Ticket, Laptop, CreditCard } from 'lucide-react';
+import { Calendar, Clock, MapPin, Ticket, Laptop, CreditCard, Download, Hourglass } from 'lucide-react';
 import Page from './components/Page';
 import { Button, Container, DateStrip, Fact, H2, Lead, Section, Todo } from './components/ui';
-import { HACKATHON_CHECKOUT, hackathonPrice } from './data/events';
+import {
+  HACKATHON_CHECKOUT,
+  MANAGER_LETTER,
+  REGULAR_PRICE,
+  TERMS_URL,
+  earlyBirdDaysLeft,
+  hackathonPrice,
+} from './data/events';
 
 const price = hackathonPrice();
+const daysLeft = earlyBirdDaysLeft();
+const saving = REGULAR_PRICE - price.amount;
+const daysLabel = daysLeft === 1 ? 'nog 1 dag' : `nog ${daysLeft} dagen`;
 
 const recognise = [
-  'Je hebt Excel-bestanden die eigenlijk een slimme applicatie zouden moeten zijn.',
-  'Je wilt een dashboard om iets helder te laten zien.',
-  'Je verzamelt elke maand heel veel data om één rapport te maken.',
-  'Je zou willen dat IT het een keer maakt zoals jij het bedoelt.',
+  'Hiring managers leveren een intake aan van drie regels en jij mag de rest uitzoeken.',
+  'Nieuwe medewerkers stellen in hun eerste week allemaal dezelfde vragen, en die komen bij jou terecht.',
+  'Elke week mail je een update over de openstaande vacatures die niemand helemaal leest.',
+  'Je HR-systeem kan bijna wat je wilt, en voor de rest staat er een verzoek bij IT of de leverancier.',
 ];
 
 const beforeAfter: [string, string][] = [
   ['Je legt in een mail uit wat je nodig hebt en wacht op IT.', 'Je opent een werkend voorbeeld en laat zien wat je bedoelt.'],
-  ['Elke maand plak je cijfers uit drie bestanden in één rapport.', 'Je hebt een eerste versie van een tool die dat voor je doet.'],
+  ['Je hebt een idee voor een tool die je werk makkelijker maakt.', 'Je hebt een eerste versie die je collega\'s kunnen proberen.'],
   ['Vibe coding is iets waar je over leest.', 'Je hebt het zelf gedaan, met je eigen idee.'],
 ];
 
-const programme: { time: React.ReactNode; title: string; body: React.ReactNode }[] = [
+// Use cases, grounded in what HR and talent teams have published about tools they built themselves
+// (Netlify People team, PYN, The CHRO Office). Examples only, participants pick their own.
+const useCases: { group: string; items: { title: string; body: string }[] }[] = [
+  {
+    group: 'Voor corporate recruiters',
+    items: [
+      {
+        title: 'Intake-app voor hiring managers',
+        body: 'De manager beantwoordt vaste vragen over de rol, het team en de must-haves. Jij krijgt een vacaturebrief waar je mee verder kunt.',
+      },
+      {
+        title: 'Interviewkit per vacature',
+        body: 'Vragen en een scorekaart per functie, zodat iedereen in het panel op dezelfde criteria beoordeelt.',
+      },
+      {
+        title: 'Overzicht voor hiring managers',
+        body: 'Per vacature zien waar kandidaten staan en waar het vastloopt, zonder dat jij elke week een update mailt.',
+      },
+      {
+        title: 'Referralportaal',
+        body: 'Medewerkers dragen iemand aan voor een vacature en zien wat er met hun tip gebeurt.',
+      },
+    ],
+  },
+  {
+    group: 'Voor HR',
+    items: [
+      {
+        title: 'Onboardingportaal',
+        body: 'Een checklist per functie en locatie voor de eerste weken, met antwoorden op de vragen die elke nieuwe collega stelt.',
+      },
+      {
+        title: 'Korte medewerkerspeiling',
+        body: 'Een paar vragen per maand, met resultaten per team die je direct kunt bespreken.',
+      },
+      {
+        title: 'Gesprekshulp voor leidinggevenden',
+        body: 'Voorbereiding op een beoordelings-, ontwikkel- of verzuimgesprek, met gespreksstarters en ruimte voor afspraken.',
+      },
+      {
+        title: 'Vraagbaak voor beleid en regelingen',
+        body: 'Medewerkers zoeken zelf op hoe verlof, thuiswerken of de opleidingsregeling werkt, in plaats van jou te mailen.',
+      },
+    ],
+  },
+];
+
+// Only the start and end time are fixed; the blocks in between have no times on purpose.
+const programme: { time?: string; title: string; body: React.ReactNode }[] = [
   {
     time: '10:00',
     title: 'Wat wij zelf gebouwd hebben',
     body: 'We beginnen met voorbeelden: een to-do-app, een chatbot die meningen van medewerkers uitvraagt en indeelt, en een CRM-systeem.',
   },
   {
-    time: <Todo>TIJD</Todo>,
     title: 'Je eigen idee kiezen',
-    body: 'Je kiest wat je wilt bouwen. Neem een idee mee, of een Excel-bestand of rapport dat je nu met de hand bijhoudt.',
+    body: 'Je kiest wat je wilt bouwen. Neem een idee mee uit je eigen werk, of kies een van de voorbeelden op deze pagina.',
   },
-  { time: <Todo>TIJD</Todo>, title: 'Lunch', body: 'Lunch is inbegrepen.' },
+  { title: 'Lunch', body: 'Lunch is inbegrepen.' },
   {
-    time: <Todo>TIJD</Todo>,
     title: 'Bouwen',
     body: "Je bouwt je eigen applicatie. Wil je oefenen met recruitmentdata, dan gebruik je onze oefen-ATS met fictieve cv's en vacatures.",
   },
@@ -64,8 +120,17 @@ const faq: { q: string; a: React.ReactNode }[] = [
   },
   { q: 'Hoe schrijf ik een team in met korting?', a: <Todo>JOUW ECHTE INSTRUCTIE VOOR TEAMINSCHRIJVINGEN HIER</Todo> },
   {
-    q: 'Waarom heb ik een Claude Code-abonnement nodig?',
-    a: 'Je bouwt op de dag met Claude Code. Het abonnement kost 20 dollar per maand en je kunt het na één maand weer opzeggen.',
+    q: 'Welk abonnement heb ik nodig?',
+    a: 'Minimaal Claude Pro. Dat kost 20 dollar per maand en je kunt het na één maand weer opzeggen. Heb je al een hoger Claude-abonnement, dan is dat ook goed.',
+  },
+  {
+    q: 'Mijn manager moet het goedkeuren. Hoe pak ik dat aan?',
+    a: (
+      <>
+        Download <a href={MANAGER_LETTER} className="text-sky-400 hover:text-sky-300">de brief voor je manager</a>, vul je
+        eigen idee en de uren die het je nu kost in en stuur hem door. Doe het voor 31 december, dan geldt de early bird nog.
+      </>
+    ),
   },
   { q: 'Werk ik met echte kandidaatgegevens?', a: "Dat hoeft niet. Je kunt bouwen tegen onze oefen-ATS met fictieve cv's en vacatures." },
   { q: 'Hoeveel deelnemers zijn er?', a: <Todo>JOUW ECHTE MAXIMUM AANTAL HIER</Todo> },
@@ -74,11 +139,12 @@ const faq: { q: string; a: React.ReactNode }[] = [
 
 const toc = [
   ['herken-je-dit', 'Herken je dit?'],
-  ['om-vier-uur', 'Om vier uur'],
+  ['wat-je-bouwt', 'Wat je bouwt'],
   ['programma', 'Programma'],
   ['begeleiders', 'Begeleiders'],
   ['meenemen', 'Wat je nodig hebt'],
   ['prijzen', 'Prijzen'],
+  ['voor-je-manager', 'Voor je manager'],
   ['vragen', 'Vragen'],
 ];
 
@@ -91,10 +157,41 @@ const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
         : 'Teamkorting vanaf 2 personen.'}
     </p>}
     <p>
-      Je rekent af op de betaalpagina van Klikwork. <Todo>WAT JE NA BETALING ONTVANGT EN ANNULERINGSVOORWAARDEN</Todo>
+      Je rekent af op de betaalpagina van Klikwork. <Todo>WAT JE NA BETALING ONTVANGT</Todo> Op je inschrijving zijn de{' '}
+      <a href={TERMS_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
+        algemene voorwaarden van Klikwork
+      </a>{' '}
+      van toepassing.
     </p>
   </div>
 );
+
+// The early bird deadline, said plainly: date, days left, what it saves and what happens after.
+const EarlyBirdBar: React.FC = () =>
+  price.earlyBird ? (
+    <div className="rounded-2xl border border-amber-300/40 bg-amber-300/10 px-5 py-4 md:px-6 md:py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+      <div className="flex items-start gap-3 flex-1">
+        <Hourglass size={20} className="text-amber-300 mt-0.5 shrink-0" aria-hidden />
+        <div>
+          <p className="text-white font-bold">
+            Early bird tot en met 31 december, {daysLabel}.
+          </p>
+          <p className="text-sm text-amber-100/90 mt-1">
+            Nu {price.amount} euro, vanaf 1 januari {REGULAR_PRICE} euro. Je bespaart {saving} euro per persoon. Moet je
+            manager akkoord geven? Vraag het budget deze week aan, dan ben je op tijd.
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-3 shrink-0">
+        <a href={MANAGER_LETTER} className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white border border-white/25 hover:border-white/60 hover:bg-white/5">
+          <Download size={16} aria-hidden /> Brief voor je manager
+        </a>
+        <a href={HACKATHON_CHECKOUT} className="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-slate-950 bg-sky-400 hover:bg-sky-300">
+          Schrijf je in
+        </a>
+      </div>
+    </div>
+  ) : null;
 
 // Two hosts, overlapping: the studio portrait large, the stage photo in front.
 const HostCollage: React.FC = () => (
@@ -128,8 +225,8 @@ const HackathonPage: React.FC = () => (
             Bouw in één dag je eigen HR-applicatie
           </h1>
           <Lead className="mt-7">
-            Je komt binnen met een idee, een Excel-bestand of een rapport waar je elke maand uren in steekt. Je gaat naar
-            huis met een werkende eerste versie die je morgen aan je collega's en je IT-afdeling kunt laten zien.
+            Je komt binnen met een idee voor een tool die jouw werk of dat van je collega's makkelijker maakt. Je gaat naar
+            huis met een werkende eerste versie die je morgen aan je team en je IT-afdeling kunt laten zien.
           </Lead>
           <p className="mt-5 text-slate-400 max-w-[60ch]">
             Voor HR-professionals en corporate recruiters. Je bouwt met vibe coding: je beschrijft wat je wilt en de AI
@@ -138,9 +235,15 @@ const HackathonPage: React.FC = () => (
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Button href={HACKATHON_CHECKOUT}>Schrijf je in, {price.amount} euro</Button>
             <span className="text-sm text-slate-400">
-              {price.earlyBird ? 'Early bird t/m 31 december, ' : 'Per persoon, '}excl. btw
+              {price.earlyBird ? `Excl. btw. Early bird t/m 31 december, daarna ${REGULAR_PRICE} euro.` : 'Per persoon, excl. btw'}
             </span>
           </div>
+          <p className="mt-4 text-sm text-slate-400">
+            Akkoord van je manager nodig?{' '}
+            <a href={MANAGER_LETTER} className="text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">
+              Download de brief met business case
+            </a>
+          </p>
         </div>
         <HostCollage />
       </div>
@@ -153,8 +256,13 @@ const HackathonPage: React.FC = () => (
         <Fact icon={<Clock size={18} />} label="Tijd">10:00 tot 16:00, met lunch</Fact>
         <Fact icon={<MapPin size={18} />} label="Locatie">Utrecht Centraal</Fact>
         <Fact icon={<Ticket size={18} />} label={price.earlyBird ? 'Early bird' : 'Prijs'}>{price.amount} euro excl. btw</Fact>
-        <Fact icon={<Laptop size={18} />} label="Meenemen">Laptop waarop je Claude mag installeren</Fact>
+        <Fact icon={<Laptop size={18} />} label="Meenemen">Laptop en minimaal Claude Pro</Fact>
       </div>
+      {price.earlyBird && (
+        <div className="mt-6">
+          <EarlyBirdBar />
+        </div>
+      )}
     </Container>
 
     {/* Atmosphere photo from an earlier session */}
@@ -259,6 +367,31 @@ const HackathonPage: React.FC = () => (
       </Container>
     </Section>
 
+    {/* Use cases */}
+    <Section id="wat-je-bouwt">
+      <Container>
+        <H2>Wat je op één dag kunt bouwen</H2>
+        <Lead className="mb-10">
+          Voorbeelden van tools die HR- en talent-teams zelf hebben gebouwd. Je kiest er een, of je neemt je eigen idee mee.
+        </Lead>
+        <div className="grid md:grid-cols-2 gap-10 md:gap-12">
+          {useCases.map((g) => (
+            <div key={g.group}>
+              <h3 className="text-sm font-semibold text-sky-300 mb-4">{g.group}</h3>
+              <ul className="divide-y divide-white/10 border-y border-white/10">
+                {g.items.map((u) => (
+                  <li key={u.title} className="py-4">
+                    <p className="text-white font-bold mb-1">{u.title}</p>
+                    <p className="text-slate-300 leading-relaxed">{u.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
     {/* Programme */}
     <Section id="programma">
       <Container>
@@ -267,7 +400,7 @@ const HackathonPage: React.FC = () => (
           {programme.map((p, i) => (
             <li key={i} className="relative pl-8 pb-10 last:pb-0">
               <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-sky-400" aria-hidden />
-              <p className="text-sm text-slate-400 mb-1">{p.time}</p>
+              {p.time && <p className="text-sm text-sky-300 font-semibold mb-1">{p.time}</p>}
               <h3 className="text-lg font-bold text-white mb-1">{p.title}</h3>
               <p className="text-slate-300 leading-relaxed max-w-[65ch]">{p.body}</p>
             </li>
@@ -307,7 +440,7 @@ const HackathonPage: React.FC = () => (
             Een laptop waarop je Claude kunt en mag installeren. Check dat vooraf bij je IT-afdeling.
           </Fact>
           <Fact icon={<CreditCard size={18} />} label="Abonnement">
-            Claude Code, 20 dollar per maand. Je kunt het na één maand opzeggen.
+            Minimaal Claude Pro, 20 dollar per maand. Je kunt het na één maand opzeggen.
           </Fact>
         </div>
       </Container>
@@ -345,12 +478,59 @@ const HackathonPage: React.FC = () => (
           </div>
         </div>
         {price.earlyBird && (
-          <p className="mt-8 text-slate-300 max-w-[65ch]">
-            Nog opleidingsbudget over dit jaar? Met de early bird boek je de training voor februari nu.
-          </p>
+          <div className="mt-8 max-w-4xl">
+            <EarlyBirdBar />
+            <p className="mt-4 text-slate-300 max-w-[65ch]">
+              Nog opleidingsbudget over dit jaar? Met de early bird boek je de dag in februari nu, op het budget van 2026.
+            </p>
+          </div>
         )}
         <div className="mt-6 max-w-[65ch]">
           <BuyNote showNext={false} />
+        </div>
+      </Container>
+    </Section>
+
+    {/* Manager letter */}
+    <Section id="voor-je-manager">
+      <Container>
+        <div className="grid md:grid-cols-[1.3fr_1fr] gap-10 items-start max-w-5xl">
+          <div>
+            <H2>Akkoord nodig van je manager? Stuur deze brief.</H2>
+            <Lead className="mb-6">
+              Een verzoek in Word dat je zelf afmaakt. Je vult je eigen idee in en wat het je nu aan tijd kost. Je manager
+              leest wat het oplevert, wat het kost en waarom jullie data veilig blijft.
+            </Lead>
+            <ul className="space-y-2 text-slate-300 mb-8">
+              {[
+                'Een mini business case: uren per week, wat die kosten en wanneer de dag zich terugverdient.',
+                'De prijs, met de early bird tot en met 31 december en de teamkorting.',
+                "Waarom je geen echte kandidaat- of medewerkersgegevens nodig hebt.",
+                'Wat je van je manager nodig hebt: akkoord, een dag weg en een Claude Pro-abonnement.',
+              ].map((t) => (
+                <li key={t} className="flex gap-3">
+                  <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-sky-400 shrink-0" aria-hidden />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap items-center gap-4">
+              <a href={MANAGER_LETTER} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-slate-950 bg-sky-400 hover:bg-sky-300">
+                <Download size={18} aria-hidden /> Download de brief
+              </a>
+              <span className="text-sm text-slate-400">Word-bestand. Opent ook in Google Docs.</span>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-6 text-sm text-slate-300 leading-relaxed">
+            <p className="text-slate-400 mb-3">Uit de brief</p>
+            <p className="text-white font-semibold mb-2">Mini business case</p>
+            <ul className="space-y-1.5">
+              <li>Wat het me nu kost: [aantal] uur per week aan [taak]</li>
+              <li>Wat het met de tool kost: [aantal] uur per week</li>
+              <li>Wat die tijd waard is: [aantal] uur x [uurtarief] euro = [bedrag] euro per maand</li>
+              <li>Terugverdientijd: de dag kost {price.amount} euro excl. btw, dus na ongeveer [aantal] weken</li>
+            </ul>
+          </div>
         </div>
       </Container>
     </Section>
@@ -382,7 +562,7 @@ const HackathonPage: React.FC = () => (
       <div className="px-4 py-3 flex items-center justify-between gap-4">
         <div className="text-sm">
           <p className="text-white font-semibold">2 feb 2027, Utrecht</p>
-          <p className="text-slate-400">{price.earlyBird ? 'Early bird ' : ''}{price.amount} euro excl. btw</p>
+          <p className="text-slate-400">{price.amount} euro excl. btw{price.earlyBird ? `, early bird ${daysLabel}` : ''}</p>
         </div>
         <a href={HACKATHON_CHECKOUT} className="px-5 py-2.5 rounded-full font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 whitespace-nowrap">
           Schrijf je in

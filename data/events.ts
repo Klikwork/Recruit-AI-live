@@ -23,6 +23,15 @@ export const hackathonPrice = () => {
   const earlyBird = today() <= EARLY_BIRD_UNTIL;
   return { earlyBird, amount: earlyBird ? 647 : 797, label: earlyBird ? 'Early bird, t/m 31 december' : 'Per persoon' };
 };
+// Whole days left in the early bird, counting today. 0 once it has ended.
+export const earlyBirdDaysLeft = () => {
+  const end = new Date(`${EARLY_BIRD_UNTIL}T23:59:59`);
+  const ms = end.getTime() - Date.now();
+  return ms > 0 ? Math.ceil(ms / 86_400_000) : 0;
+};
+export const REGULAR_PRICE = 797;
+export const MANAGER_LETTER = '/downloads/hr-hackathon-verzoek-aan-je-manager.docx';
+export const TERMS_URL = 'https://klikwork.com/terms-and-conditions';
 export const isUpcoming = (date: string) => date >= today();
 
 export const NOTIFY_2027 =
