@@ -113,7 +113,10 @@ const hosts = [
 ];
 
 const faq: { q: string; a: React.ReactNode }[] = [
-  { q: 'Moet ik kunnen programmeren?', a: <Todo>JOUW ECHTE ANTWOORD HIER</Todo> },
+  {
+    q: 'Moet ik echt kunnen programmeren?',
+    a: 'Nee. Je moet in gewone taal kunnen uitleggen wat je wilt. De AI vertaalt dat voor je en maakt er een werkende app, webapp of andere toepassing van.',
+  },
   {
     q: 'Kan ik op factuur betalen?',
     a: 'Ja. Bij je inschrijving kies je of je direct betaalt of een factuur ontvangt. Handig als je werkgever betaalt.',
@@ -138,7 +141,18 @@ const faq: { q: string; a: React.ReactNode }[] = [
   },
   { q: 'Werk ik met echte kandidaatgegevens?', a: "Dat hoeft niet. Je kunt bouwen tegen onze oefen-ATS met fictieve cv's en vacatures." },
   { q: 'Hoeveel deelnemers zijn er?', a: 'Maximaal 20. Zo is er genoeg tijd om iedereen aan tafel te helpen.' },
-  { q: 'Waar is het precies?', a: <>Bij Utrecht Centraal Station. <Todo>EXACTE ZAAL EN ADRES HIER</Todo></> },
+  {
+    q: 'Waar is het precies?',
+    a: (
+      <>
+        Bij{' '}
+        <a href="https://aristo.nl/vergaderlocatie-utrecht-centraal-station" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300">
+          Aristo Utrecht Centraal
+        </a>
+        , Godebaldkwartier 357, 3511 DT Utrecht. Twee minuten lopen van het station.
+      </>
+    ),
+  },
 ];
 
 const toc = [
@@ -236,7 +250,7 @@ const HackathonPage: React.FC = () => (
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-6 border-y border-white/10 py-6">
         <Fact icon={<Calendar size={18} />} label="Datum">Dinsdag 2 februari 2027</Fact>
         <Fact icon={<Clock size={18} />} label="Tijd">10:00 tot 16:00, met lunch</Fact>
-        <Fact icon={<MapPin size={18} />} label="Locatie">Utrecht Centraal</Fact>
+        <Fact icon={<MapPin size={18} />} label="Locatie">Aristo, 2 min van Utrecht Centraal</Fact>
         <Fact icon={<Ticket size={18} />} label={price.earlyBird ? 'Early bird' : 'Prijs'}>{price.amount} euro excl. btw</Fact>
         <Fact icon={<Laptop size={18} />} label="Meenemen">Laptop en minimaal Claude Pro</Fact>
       </div>
