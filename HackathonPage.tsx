@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Clock, MapPin, Ticket, Laptop, CreditCard, Download, Hourglass } from 'lucide-react';
+import { Calendar, Clock, MapPin, Ticket, Laptop, Download, Hourglass } from 'lucide-react';
 import Page from './components/Page';
 import { Button, Container, DateStrip, Fact, H2, Lead, Section, Todo } from './components/ui';
 import {
@@ -120,8 +120,8 @@ const faq: { q: string; a: React.ReactNode }[] = [
   },
   { q: 'Hoe schrijf ik een team in met korting?', a: <Todo>JOUW ECHTE INSTRUCTIE VOOR TEAMINSCHRIJVINGEN HIER</Todo> },
   {
-    q: 'Welk abonnement heb ik nodig?',
-    a: 'Minimaal Claude Pro. Dat kost 20 dollar per maand en je kunt het na één maand weer opzeggen. Heb je al een hoger Claude-abonnement, dan is dat ook goed.',
+    q: 'Wat moet ik meenemen?',
+    a: 'Een laptop waarop je Claude mag installeren (check dat vooraf bij je IT-afdeling) en minimaal een Claude Pro-abonnement. Dat kost 20 dollar per maand en je kunt het na één maand weer opzeggen.',
   },
   {
     q: 'Mijn manager moet het goedkeuren. Hoe pak ik dat aan?',
@@ -142,9 +142,8 @@ const toc = [
   ['wat-je-bouwt', 'Wat je bouwt'],
   ['programma', 'Programma'],
   ['begeleiders', 'Begeleiders'],
-  ['meenemen', 'Wat je nodig hebt'],
   ['prijzen', 'Prijzen'],
-  ['voor-je-manager', 'Voor je manager'],
+  ['voor-je-manager', 'Je manager'],
   ['vragen', 'Vragen'],
 ];
 
@@ -166,30 +165,16 @@ const BuyNote: React.FC<{ showNext?: boolean }> = ({ showNext = true }) => (
   </div>
 );
 
-// The early bird deadline, said plainly: date, days left, what it saves and what happens after.
+// The early bird deadline, said once: date, days left, what it saves.
 const EarlyBirdBar: React.FC = () =>
   price.earlyBird ? (
-    <div className="rounded-2xl border border-amber-300/40 bg-amber-300/10 px-5 py-4 md:px-6 md:py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-      <div className="flex items-start gap-3 flex-1">
-        <Hourglass size={20} className="text-amber-300 mt-0.5 shrink-0" aria-hidden />
-        <div>
-          <p className="text-white font-bold">
-            Early bird tot en met 31 december, {daysLabel}.
-          </p>
-          <p className="text-sm text-amber-100/90 mt-1">
-            Nu {price.amount} euro, vanaf 1 januari {REGULAR_PRICE} euro. Je bespaart {saving} euro per persoon. Moet je
-            manager akkoord geven? Vraag het budget deze week aan, dan ben je op tijd.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-wrap gap-3 shrink-0">
-        <a href={MANAGER_LETTER} className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white border border-white/25 hover:border-white/60 hover:bg-white/5">
-          <Download size={16} aria-hidden /> Brief voor je manager
-        </a>
-        <a href={HACKATHON_CHECKOUT} className="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-slate-950 bg-sky-400 hover:bg-sky-300">
-          Schrijf je in
-        </a>
-      </div>
+    <div className="flex items-start gap-3 border-l-2 border-amber-300 pl-4 py-1">
+      <Hourglass size={18} className="text-amber-300 mt-1 shrink-0" aria-hidden />
+      <p className="text-slate-300 leading-relaxed">
+        <span className="text-white font-semibold">Early bird tot en met 31 december, {daysLabel}.</span> Daarna{' '}
+        {REGULAR_PRICE} euro, dus je bespaart {saving} euro per persoon. Moet je manager akkoord geven? Vraag het budget
+        nu aan met <a href="#voor-je-manager" className="text-sky-400 hover:text-sky-300 underline underline-offset-2">de brief</a>.
+      </p>
     </div>
   ) : null;
 
@@ -235,15 +220,9 @@ const HackathonPage: React.FC = () => (
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Button href={HACKATHON_CHECKOUT}>Schrijf je in, {price.amount} euro</Button>
             <span className="text-sm text-slate-400">
-              {price.earlyBird ? `Excl. btw. Early bird t/m 31 december, daarna ${REGULAR_PRICE} euro.` : 'Per persoon, excl. btw'}
+              {price.earlyBird ? `Early bird t/m 31 december, ${daysLabel}. Excl. btw.` : 'Per persoon, excl. btw.'}
             </span>
           </div>
-          <p className="mt-4 text-sm text-slate-400">
-            Akkoord van je manager nodig?{' '}
-            <a href={MANAGER_LETTER} className="text-sky-400 hover:text-sky-300 underline-offset-2 hover:underline">
-              Download de brief met business case
-            </a>
-          </p>
         </div>
         <HostCollage />
       </div>
@@ -258,11 +237,6 @@ const HackathonPage: React.FC = () => (
         <Fact icon={<Ticket size={18} />} label={price.earlyBird ? 'Early bird' : 'Prijs'}>{price.amount} euro excl. btw</Fact>
         <Fact icon={<Laptop size={18} />} label="Meenemen">Laptop en minimaal Claude Pro</Fact>
       </div>
-      {price.earlyBird && (
-        <div className="mt-6">
-          <EarlyBirdBar />
-        </div>
-      )}
     </Container>
 
     {/* Atmosphere photo from an earlier session */}
@@ -314,34 +288,6 @@ const HackathonPage: React.FC = () => (
           Dan kun je het ook zelf bouwen. Samen met andere HR- en recruitmentprofessionals leer je in één dag hoe je een
           goed idee omzet in iets dat werkt.
         </Lead>
-      </Container>
-    </Section>
-
-    {/* Atmosphere gallery */}
-    <Section id="sfeer">
-      <Container>
-        <H2>Zo ziet een bouwdag eruit</H2>
-        <Lead className="mb-10">Laptops open, ieder aan een eigen idee, en hulp aan tafel als je vastloopt.</Lead>
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            ['bouwdag-tafel', 'Deelnemers aan een lange tafel werken op hun laptop, één van hen typt geconcentreerd.'],
-            ['bouwdag-laptops', 'Een tafel met deelnemers die achter hun laptops zitten en meekijken op elkaars scherm.'],
-            ['bouwdag-overleg', 'Iemand buigt zich over een tafel om mee te kijken, met uitzicht op de stad.'],
-          ].map(([name, alt]) => (
-            <img
-              key={name}
-              src={`/images/sfeer/${name}-800.webp`}
-              srcSet={`/images/sfeer/${name}-800.webp 800w, /images/sfeer/${name}.webp 1600w`}
-              sizes="(min-width: 768px) 33vw, 100vw"
-              width={800}
-              height={450}
-              alt={alt}
-              loading="lazy"
-              className="w-full aspect-[4/3] object-cover rounded-xl border border-white/10"
-            />
-          ))}
-        </div>
-        <p className="mt-3 text-sm text-slate-400">Sfeerbeelden van eerdere Klikwork-sessies.</p>
       </Container>
     </Section>
 
@@ -431,21 +377,6 @@ const HackathonPage: React.FC = () => (
       </Container>
     </Section>
 
-    {/* What to bring */}
-    <Section id="meenemen">
-      <Container>
-        <H2>Wat je nodig hebt</H2>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl">
-          <Fact icon={<Laptop size={18} />} label="Laptop">
-            Een laptop waarop je Claude kunt en mag installeren. Check dat vooraf bij je IT-afdeling.
-          </Fact>
-          <Fact icon={<CreditCard size={18} />} label="Abonnement">
-            Minimaal Claude Pro, 20 dollar per maand. Je kunt het na één maand opzeggen.
-          </Fact>
-        </div>
-      </Container>
-    </Section>
-
     {/* Pricing */}
     <Section id="prijzen">
       <Container>
@@ -480,9 +411,6 @@ const HackathonPage: React.FC = () => (
         {price.earlyBird && (
           <div className="mt-8 max-w-4xl">
             <EarlyBirdBar />
-            <p className="mt-4 text-slate-300 max-w-[65ch]">
-              Nog opleidingsbudget over dit jaar? Met de early bird boek je de dag in februari nu, op het budget van 2026.
-            </p>
           </div>
         )}
         <div className="mt-6 max-w-[65ch]">
@@ -494,19 +422,16 @@ const HackathonPage: React.FC = () => (
     {/* Manager letter */}
     <Section id="voor-je-manager">
       <Container>
-        <div className="grid md:grid-cols-[1.3fr_1fr] gap-10 items-start max-w-5xl">
+        <div className="max-w-3xl">
           <div>
-            <H2>Akkoord nodig van je manager? Stuur deze brief.</H2>
+            <H2>Akkoord nodig van je manager?</H2>
             <Lead className="mb-6">
-              Een verzoek in Word dat je zelf afmaakt. Je vult je eigen idee in en wat het je nu aan tijd kost. Je manager
-              leest wat het oplevert, wat het kost en waarom jullie data veilig blijft.
+              Download een verzoek in Word, vul je eigen idee in en wat het je nu aan tijd kost, en stuur het door.
             </Lead>
             <ul className="space-y-2 text-slate-300 mb-8">
               {[
                 'Een mini business case: uren per week, wat die kosten en wanneer de dag zich terugverdient.',
-                'De prijs, met de early bird tot en met 31 december en de teamkorting.',
-                "Waarom je geen echte kandidaat- of medewerkersgegevens nodig hebt.",
-                'Wat je van je manager nodig hebt: akkoord, een dag weg en een Claude Pro-abonnement.',
+                'Wat het kost en waarom je geen echte kandidaat- of medewerkersgegevens nodig hebt.',
               ].map((t) => (
                 <li key={t} className="flex gap-3">
                   <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-sky-400 shrink-0" aria-hidden />
@@ -520,16 +445,6 @@ const HackathonPage: React.FC = () => (
               </a>
               <span className="text-sm text-slate-400">Word-bestand. Opent ook in Google Docs.</span>
             </div>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-6 text-sm text-slate-300 leading-relaxed">
-            <p className="text-slate-400 mb-3">Uit de brief</p>
-            <p className="text-white font-semibold mb-2">Mini business case</p>
-            <ul className="space-y-1.5">
-              <li>Wat het me nu kost: [aantal] uur per week aan [taak]</li>
-              <li>Wat het met de tool kost: [aantal] uur per week</li>
-              <li>Wat die tijd waard is: [aantal] uur x [uurtarief] euro = [bedrag] euro per maand</li>
-              <li>Terugverdientijd: de dag kost {price.amount} euro excl. btw, dus na ongeveer [aantal] weken</li>
-            </ul>
           </div>
         </div>
       </Container>
@@ -562,7 +477,7 @@ const HackathonPage: React.FC = () => (
       <div className="px-4 py-3 flex items-center justify-between gap-4">
         <div className="text-sm">
           <p className="text-white font-semibold">2 feb 2027, Utrecht</p>
-          <p className="text-slate-400">{price.amount} euro excl. btw{price.earlyBird ? `, early bird ${daysLabel}` : ''}</p>
+          <p className="text-slate-400">{price.earlyBird ? 'Early bird ' : ''}{price.amount} euro excl. btw</p>
         </div>
         <a href={HACKATHON_CHECKOUT} className="px-5 py-2.5 rounded-full font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 whitespace-nowrap">
           Schrijf je in
