@@ -16,15 +16,16 @@ export const Lead: React.FC<{ children: React.ReactNode; className?: string }> =
   <p className={`text-lg md:text-xl text-slate-300 leading-relaxed max-w-[65ch] ${className}`}>{children}</p>
 );
 
-export const Button: React.FC<{ href: string; children: React.ReactNode; variant?: 'primary' | 'secondary'; full?: boolean }> = ({
+export const Button: React.FC<{ href: string; children: React.ReactNode; variant?: 'primary' | 'secondary'; full?: boolean; shine?: boolean }> = ({
   href,
   children,
   variant = 'primary',
   full = false,
+  shine = false,
 }) => (
   <a
     href={href}
-    className={`${full ? 'flex w-full' : 'inline-flex'} items-center justify-center px-7 py-3.5 rounded-full font-bold transition-colors ${
+    className={`${full ? 'flex w-full' : 'inline-flex'} items-center justify-center px-7 py-3.5 rounded-full font-bold transition-colors ${shine ? 'btn-shine ' : ''}${
       variant === 'primary'
         ? 'text-slate-950 bg-sky-400 hover:bg-sky-300 shadow-[0_6px_16px_-6px_rgba(0,0,0,0.6)]'
         : 'text-white border border-white/20 hover:border-white/50 hover:bg-white/5'
