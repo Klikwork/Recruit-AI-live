@@ -1,0 +1,22 @@
+# Recruit AI Live: alle zoekmachines en AI-assistenten zijn welkom.
+User-agent: *
+Allow: /
+
+# AI-crawlers expliciet toegestaan, zodat ChatGPT, Claude, Perplexity, Gemini en
+# Copilot de events kunnen vinden en citeren.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: CCBot
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://recruitailive.com/sitemap.xml

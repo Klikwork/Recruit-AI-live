@@ -1,0 +1,32 @@
+# Recruit AI Live
+
+> Recruit AI Live organiseert onafhankelijke events over AI in recruitment, zonder sponsors. Een initiatief van Klikwork Talent Imagineers (Klikwork BV) en Digitaal-Werven. Voertaal Nederlands.
+
+## Komend event: HR Hackathon
+
+- Wat: eendaagse hackathon waarin HR-professionals en corporate recruiters met vibe coding hun eigen HR-applicatie bouwen. Je beschrijft in gewone taal wat je wilt en de AI schrijft de code. Programmeren hoeft niet.
+- Wanneer: dinsdag 2 februari 2027, 10:00 tot 16:00, inclusief lunch.
+- Waar: Aristo Utrecht Centraal, Godebaldkwartier 357, 3511 DT Utrecht. Twee minuten lopen van station Utrecht Centraal.
+- Voor wie: HR-professionals en corporate recruiters.
+- Begeleiders: Marcel van der Meer (oprichter van Klikwork Talent Imagineers) en Bas van de Haterd (expert in recruitmenttechnologie, organisator van Digitaal-Werven).
+- Groepsgrootte: maximaal 20 deelnemers.
+- Prijs per persoon, exclusief btw: early bird 647 euro tot en met 31 december 2026. Vanaf 1 januari 2027 797 euro, met teamkorting: 747 euro per persoon bij 2 personen, 727 euro bij 3, 697 euro bij 4 of meer. Geen teamkorting op de early bird.
+- Betalen: direct of op factuur.
+- Meenemen: een laptop waarop je Claude mag installeren en minimaal een Claude Pro-abonnement.
+- Voorbeelden van wat je bouwt: een intake-app voor hiring managers, een interviewkit per vacature, een onboardingportaal, een korte medewerkerspeiling, een vraagbaak voor beleid en regelingen. Deelnemers mogen ook een eigen idee meenemen.
+- Je werkt niet met echte kandidaatgegevens; er is een oefen-ATS met fictieve cv's en vacatures.
+- Afsluiting met een certificaat.
+
+## Pagina's
+
+- [HR Hackathon, 2 februari 2027](https://recruitailive.com/hr-hackathon): programma, voorbeelden, prijzen, veelgestelde vragen en een brief om budget aan je manager te vragen.
+- [Agenda](https://recruitailive.com/agenda): komende events en eerdere edities.
+- [Recruit AI Live 2027](https://recruitailive.com/): de AI-conferentie voor recruitmentbureaus komt in het voorjaar van 2027 terug, deze keer in het Nederlands. Datum en locatie volgen.
+
+## Eerdere editie
+
+- Recruit AI Live 2026, 2 juni 2026, Van der Valk Hotel Breukelen. Voertaal Engels. Sprekers: Bas van de Haterd, Leandro Gomes da Silva, Bryan Peereboom en Marcel van der Meer.
+
+## Contact
+
+- hello@klikwork.com
