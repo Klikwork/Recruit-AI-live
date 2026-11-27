@@ -17,6 +17,10 @@
 - Je werkt niet met echte kandidaatgegevens; er is een oefen-ATS met fictieve cv's en vacatures.
 - Afsluiting met een certificaat.
 
+## Wat is vibe coding?
+
+Vibe coding is software bouwen door in gewone taal te beschrijven wat je wilt. Een AI-model zoals Claude schrijft de code, jij test het resultaat en stuurt bij tot het doet wat je bedoelt. Je hoeft niet te kunnen programmeren.
+
 ## Pagina's
 
 - [HR Hackathon, 2 februari 2027](https://recruitailive.com/hr-hackathon): programma, voorbeelden, prijzen, veelgestelde vragen en een brief om budget aan je manager te vragen.
@@ -25,7 +29,12 @@
 
 ## Eerdere editie
 
-- Recruit AI Live 2026, 2 juni 2026, Van der Valk Hotel Breukelen. Voertaal Engels. Sprekers: Bas van de Haterd, Leandro Gomes da Silva, Bryan Peereboom en Marcel van der Meer.
+Recruit AI Live 2026, 2 juni 2026, Van der Valk Hotel Breukelen. Voertaal Engels.
+
+- AI: Evolution or Revolution? (Bas van de Haterd): de snelheid van de ontwikkelingen in AI, de gevolgen voor de arbeidsmarkt en welke talenten meer waard worden.
+- Stop buying AI tools (Leandro Gomes da Silva): waarom bureaus met AI-tools weinig resultaat zien, en hoe je kiest waar je begint, wie eigenaar is en hoe je resultaat meet.
+- SEO is dead. GEO is next. (Bryan Peereboom): kandidaten vragen ChatGPT, Perplexity of Copilot om advies; hoe die tools werkgevers aanbevelen en wat recruiters kunnen doen om zichtbaar te blijven.
+- The gap between you and your competitor? Setup and agents. (Marcel van der Meer): het verschil zit in de setup, wat je eerst oplost voordat je automatiseert, en hoe een agent controleert hoeveel kandidaten in je database nog kloppen.
 
 ## Contact
 

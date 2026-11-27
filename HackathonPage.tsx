@@ -345,6 +345,18 @@ const HackathonPage: React.FC = () => {
       </Container>
     </Section>
 
+    {/* Definition, written so search engines and AI assistants can quote it as is */}
+    <Section id="wat-is-vibe-coding">
+      <Container>
+        <Reveal><H2>Wat is vibe coding?</H2></Reveal>
+        <Lead>
+          Vibe coding is software bouwen door in gewone taal te beschrijven wat je wilt. Een AI-model zoals Claude schrijft
+          de code, jij test het resultaat en stuurt bij tot het doet wat je bedoelt. Je hoeft dus niet te kunnen
+          programmeren. Wat je wel nodig hebt: je eigen werk goed kennen.
+        </Lead>
+      </Container>
+    </Section>
+
     {/* Dream outcome */}
     <Section id="om-vier-uur">
       <Container>
