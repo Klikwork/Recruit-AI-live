@@ -16,6 +16,8 @@ const price = hackathonPrice();
 const daysLeft = earlyBirdDaysLeft();
 const saving = REGULAR_PRICE - price.amount;
 const daysLabel = daysLeft === 1 ? 'nog 1 dag' : `nog ${daysLeft} dagen`;
+// The static HTML is rendered at build time, so a day count there would go stale. Only show it in the browser.
+const daysSuffix = typeof window === 'undefined' ? '' : `, ${daysLabel}`;
 
 const recognise = [
   'Hiring managers leveren een intake aan van drie regels en jij mag de rest uitzoeken.',
@@ -204,7 +206,7 @@ const EarlyBirdBar: React.FC = () =>
     <div className="flex items-start gap-3 max-w-[70ch]">
       <Hourglass size={18} className="text-sky-400 mt-1 shrink-0" aria-hidden />
       <p className="text-slate-300 leading-relaxed">
-        <span className="text-white font-semibold">Early bird tot en met 31 december, {daysLabel}.</span> Vanaf 1 januari
+        <span className="text-white font-semibold">Early bird tot en met 31 december{daysSuffix}.</span> Vanaf 1 januari
         betaal je {saving} euro meer per persoon. Moet je manager akkoord geven? Vraag het budget nu aan met <a href="#voor-je-manager" className="text-sky-400 hover:text-sky-300 underline underline-offset-2">de brief</a>.
       </p>
     </div>
@@ -271,7 +273,7 @@ const HackathonPage: React.FC = () => {
             <Button href={HACKATHON_CHECKOUT} shine>Reserveer je plek</Button>
             <span className="text-sm text-slate-400">
               {price.earlyBird && <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-emerald-400 mr-2 align-middle" aria-hidden />}
-              {price.amount} euro excl. btw{price.earlyBird ? `, early bird ${daysLabel}` : ''}. Maximaal 20 plekken. Direct betalen of op factuur.
+              {price.amount} euro excl. btw{price.earlyBird ? `, early bird ${daysSuffix ? daysLabel : 't/m 31 december'}` : ''}. Maximaal 20 plekken. Direct betalen of op factuur.
             </span>
           </div>
         </div>
@@ -339,6 +341,18 @@ const HackathonPage: React.FC = () => {
         <Lead>
           Dan kun je het ook zelf bouwen. Samen met andere HR- en recruitmentprofessionals leer je in één dag hoe je een
           goed idee omzet in iets dat werkt.
+        </Lead>
+      </Container>
+    </Section>
+
+    {/* Definition, written so search engines and AI assistants can quote it as is */}
+    <Section id="wat-is-vibe-coding">
+      <Container>
+        <Reveal><H2>Wat is vibe coding?</H2></Reveal>
+        <Lead>
+          Vibe coding is software bouwen door in gewone taal te beschrijven wat je wilt. Een AI-model zoals Claude schrijft
+          de code, jij test het resultaat en stuurt bij tot het doet wat je bedoelt. Je hoeft dus niet te kunnen
+          programmeren. Wat je wel nodig hebt: je eigen werk goed kennen.
         </Lead>
       </Container>
     </Section>
